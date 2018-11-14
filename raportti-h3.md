@@ -54,6 +54,9 @@ Suoritettu kyseinen tehtäväksianto tähän raportti-h3.md tiedostoon.
 Lopuksi  varmennettu että kaikki on paikoillaan ja ajantasalla
 
 ## C)
+Tehtäväksianto:
+Laita /srv/salt/ gittiin. Tee uusi moduli. Kloonaa varastosi toiselle koneelle (tai poista /srv/salt ja palauta se kloonaamalla) ja jatka sillä.
+
 
 - siirrytty käyttämään virtuaalikonetta
 - asennettu git
@@ -72,6 +75,9 @@ selite: Remember password for one hour (60*60 seconds)
 Lähde: http://terokarvinen.com/2016/publish-your-project-with-github
 
 ## D)
+Tehtäväksianto:
+Näytä omalla salt-varastollasi esimerkit komennoista ‘git log’, ‘git diff’ ja ‘git blame’. Selitä tulokset.
+
 
 ### git log
 
@@ -149,6 +155,10 @@ Lähde: https://www.atlassian.com/git/tutorials/inspecting-a-repository/git-blam
 
 
 ## E)
+Tehtäväksianto:
+Tee tyhmä muutos gittiin, älä tee commit:tia. Tuhoa huonot muutokset ‘git reset –hard’. Huomaa, että tässä toiminnossa ei ole peruutusnappia.
+
+
 
 Tein muutoksia raportti-h3.md tiedostoon kirjoittamalla siihen turhuuksia. Ajoin ohjeen mukaisesti komennon:
 
@@ -158,5 +168,6 @@ Tein muutoksia raportti-h3.md tiedostoon kirjoittamalla siihen turhuuksia. Ajoin
 Koska en ollut ajanut committia ennen komennon ajamista, palautui versionhallinnasta edellinen commit.
 
 ## F)
-
+Tehtäväksianto:
+Tee uusi salt-moduli. Voit asentaa ja konfiguroida minkä vain uuden ohjelman: demonin, työpöytäohjelman tai komentokehotteesta toimivan ohjelman. Käytä tarvittaessa ‘find -printf “%T+ %p\n”|sort’ löytääksesi uudet asetustiedostot.
 
