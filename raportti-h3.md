@@ -224,3 +224,16 @@ Koska en ollut ajanut committia ennen komennon ajamista, palautui versionhallinn
 Tehtäväksianto:
 Tee uusi salt-moduli. Voit asentaa ja konfiguroida minkä vain uuden ohjelman: demonin, työpöytäohjelman tai komentokehotteesta toimivan ohjelman. Käytä tarvittaessa ‘find -printf “%T+ %p\n”|sort’ löytääksesi uudet asetustiedostot.
 
+luotu uusi moduuli nimeltä leafpad.sls
+
+sisältö:
+	
+	leafpad:
+	  pkg.installed:
+	    - name: leafpad
+
+
+Ajettu commit ja testattu ajaa uusi leafpad.sls Lenovolla
+
+
+toimi
