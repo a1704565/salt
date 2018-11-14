@@ -37,6 +37,8 @@ Lähde: http://terokarvinen.com/2016/publish-your-project-with-github
 
 ## D)
 
+### git log
+
 Esimerkki git log toiminnosta:
 
 	/srv/salt$ git log
@@ -66,4 +68,28 @@ Esimerkki git log toiminnosta:
 
 
 - git log komento näyttää lokin tapahtumaketjusta; mitä, milloin ja kuka. Git log toiminnolla voi myös tehdä muita edistyneempiä toimenpiteitä.
+
+### git diff
+
+Kun edellisen esimerkin tavoin  git log toiminnon ja sen jälkeen git diff toiminnon ja alitsee useamman commitin, näkee sillä erot
+
+Esimerkki git diff käytöstä:
+
+	/srv/salt$ git diff a9fdcd1fe2ea4adc5052725305eb3e8454a6edef 69b2abc0da6016fa704f2a6ae44a8796ec11ad2d
+	diff --git a/raportti-h3.md b/raportti-h3.md
+	index e556ba2..84cb4ff 100644
+	--- a/raportti-h3.md
+	+++ b/raportti-h3.md
+	@@ -1,6 +1,6 @@
+	 # Raportti
+ 
+	-## Taustaa:
+	+Taustaa:
+ 
+	 - Luotu Githubiin repository salt
+	 - siirretty vanha /srv/salt kansio turvaan
+
+
+### git blame
+
 
