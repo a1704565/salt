@@ -1,5 +1,37 @@
 # Raportti
 
+Tehtäviä tehdessä on käytetty samaa kannettavaa tietokonetta, kuten edellisissäkin tehtävissä (Lenovo). Lisäksi tätä tehtävää varten on käytetty myös samaa virtuaalikonetta kuin aikaisemmassa tehtävässä h2 (xubuntu3).
+
+Lenovon tiedot:
+- Koneen malli: Lenovo Z50-70
+- CPU: Intel Core i5-4210U @ 4x 2.7GHz
+- RAM: 16GB, 1600MHz DDR3
+- GPU: Intel integrated graphics / nVidia GeForce 820
+- Käyttöjärjestelmä: Xubuntu 18.04 LTS
+- Lyvytila: noin 120GB (SSD), toinen vastaava osio varattu Windows 10 käyttöön
+
+Virtuaalikoneen xubuntu3 tiedot:
+- Ympäristö: VirtualBox 5.2.10
+- Käyttöjärjestelmä: Xubuntu 18.04 LTS
+- 2048MB muistia
+- 128MB video muistia
+- 1x prosessoriydin käytössä
+- dynaamista levytilaa noin 20GB
+- network = Bridged adapter tilassa
+
+Molempiin on ajettu uusimmat päivitykset ennen tehtävän aloittamista.
+
+
+## b)
+Tehtäväksianto:
+
+MarkDown. Tee tämän tehtävän raportti MarkDownina. Helpointa on tehdä raportti samaan GitHub-varastoon kuin Salt-modulit. Tiedostoon .md-pääte. Tyhjä rivi tekee kappalejaon, risuaita ‘#’ tekee otsikon, sisennys merkitsee koodinpätkän.
+
+
+Suoritettu kyseinen tehtäväksianto tähän raportti-h3.md tiedostoon.
+
+
+
 ## Taustaa:
 
 - Luotu Githubiin repository salt
@@ -114,5 +146,17 @@ Edellisessä esimerkissä ajamalla git blame -komento tulostuu tiedot muutoksist
 Git blamella voi tehdä muitakin edistyneempiä asioita.
 
 Lähde: https://www.atlassian.com/git/tutorials/inspecting-a-repository/git-blame
+
+
+## E)
+
+Tein muutoksia raportti-h3.md tiedostoon kirjoittamalla siihen turhuuksia. Ajoin ohjeen mukaisesti komennon:
+
+	xubuntu3$ sudo git reset --hard
+	HEAD is now at 273e4f9 edit raportti-h3 again.
+
+Koska en ollut ajanut committia ennen komennon ajamista, palautui versionhallinnasta edellinen commit.
+
+## F)
 
 
