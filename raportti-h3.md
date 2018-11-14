@@ -7,10 +7,12 @@
 - kloonattu githubista repository salt kansioon /srv/
 - kopioitu vanhan saltin sisältö sinne
 - määritetty git konfiguraatiot (käyttäjänimi / sähköposti)
-- git add .
-- git commit
-- git pull
-- git push
+
+	git add .
+	git commit
+	git pull
+	git push
+
 - varmennettu että kaikki on paikoillaan ja ajantasalla
 
 ## C)
@@ -49,4 +51,7 @@
 	Date:   Wed Nov 14 04:32:13 2018 +0200
 
 	    Initial commit
+
+
+- git log komento näyttää lokin tapahtumaketjusta; mitä, milloin ja kuka. Git log toiminnolla voi myös tehdä muita edistyneempiä toimenpiteitä.
 
