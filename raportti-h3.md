@@ -123,6 +123,10 @@ Ajettu komento:
 selite: Remember password for one hour (60*60 seconds)
 Lähde: http://terokarvinen.com/2016/publish-your-project-with-github
 
+
+Seuraavat tehtävät on kaikki tehty ja commitattu virtuaalikoneelta.
+
+
 ## D)
 Tehtäväksianto:
 Näytä omalla salt-varastollasi esimerkit komennoista ‘git log’, ‘git diff’ ja ‘git blame’. Selitä tulokset.
