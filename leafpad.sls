@@ -1,3 +1,3 @@
 leafpad:
-  pkg.leafpad:
+  pkg.installed:
     - name: leafpad
