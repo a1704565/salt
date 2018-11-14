@@ -233,7 +233,34 @@ sisältö:
 	    - name: leafpad
 
 
-Ajettu commit ja testattu ajaa uusi leafpad.sls Lenovolla
+Ajettu commit koneella xubuntu3:
+
+	sudo git add . && sudo git commit; sudo git pull && sudo git push
+
+Tämän jälkeen ajettu sama koneella Lenovo:
+
+	sudo git add . && sudo git commit; sudo git pull && sudo git push
+
+Ajettu uusi sls Lenovolla
+
+	/srv/salt$ sudo salt 'xubuntu3' state.apply leafpad
+	xubuntu3:
+	----------
+	          ID: leafpad
+	    Function: pkg.installed
+	      Result: True
+	     Comment: All specified packages are already installed
+	     Started: 07:52:24.056871
+	    Duration: 870.905 ms
+	     Changes:   
+	
+	Summary for xubuntu3
+	------------
+	Succeeded: 1
+	Failed:    0
+	------------
+	Total states run:     1
+	Total run time: 870.905 ms
 
 
-toimi
+Kaikki näyttäisi toimivan ilman ongelmia.
