@@ -8,12 +8,14 @@
 - kopioitu vanhan saltin sisältö sinne
 - määritetty git konfiguraatiot (käyttäjänimi / sähköposti)
 
-	git add .
-	git commit
-	git pull
-	git push
 
-- varmennettu että kaikki on paikoillaan ja ajantasalla
+		git add .
+		git commit
+		git pull
+		git push
+
+
+Lopuksi  varmennettu että kaikki on paikoillaan ja ajantasalla
 
 ## C)
 
@@ -24,8 +26,18 @@
 - kloonattu /srv kansioon github repository salt
 - jatkettu thetäviä virtuaalikoneella
 
+### Välitiedote
+
+Ajettu komento:
+
+	git config --global credential.helper "cache --timeout=3600"
+
+selite: Remember password for one hour (60*60 seconds)
+Lähde: http://terokarvinen.com/2016/publish-your-project-with-github
 
 ## D)
+
+Esimerkki git log toiminnosta:
 
 	/srv/salt$ git log
 	commit a9fdcd1fe2ea4adc5052725305eb3e8454a6edef (HEAD -> master, origin/master, origin/HEAD)
