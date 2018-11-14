@@ -5,8 +5,12 @@
 - Luotu Githubiin repository salt
 - siirretty vanha /srv/salt kansio turvaan
 - kloonattu githubista repository salt kansioon /srv/
+
+		
+
 - kopioitu vanhan saltin sisältö sinne
 - määritetty git konfiguraatiot (käyttäjänimi / sähköposti)
+- ajettu toiminnot
 
 
 		git add .
@@ -30,7 +34,7 @@ Lopuksi  varmennettu että kaikki on paikoillaan ja ajantasalla
 
 Ajettu komento:
 
-	git config --global credential.helper "cache --timeout=3600"
+	xubuntu3$ git config --global credential.helper "cache --timeout=3600"
 
 selite: Remember password for one hour (60*60 seconds)
 Lähde: http://terokarvinen.com/2016/publish-your-project-with-github
@@ -41,7 +45,7 @@ Lähde: http://terokarvinen.com/2016/publish-your-project-with-github
 
 Esimerkki git log toiminnosta:
 
-	/srv/salt$ git log
+	xubuntu3$ /srv/salt$ git log
 	commit a9fdcd1fe2ea4adc5052725305eb3e8454a6edef (HEAD -> master, origin/master, origin/HEAD)
 	Author: Juha-Pekka Pulkkinen <juha-pekka.pulkkinen@myy.haaga-helia.fi>
 	Date:   Wed Nov 14 05:54:35 2018 +0200
@@ -69,13 +73,15 @@ Esimerkki git log toiminnosta:
 
 - git log komento näyttää lokin tapahtumaketjusta; mitä, milloin ja kuka. Git log toiminnolla voi myös tehdä muita edistyneempiä toimenpiteitä.
 
+Lähde: https://www.atlassian.com/git/tutorials/git-log
+
 ### git diff
 
 Kun edellisen esimerkin tavoin  git log toiminnon ja sen jälkeen git diff toiminnon ja alitsee useamman commitin, näkee sillä erot
 
 Esimerkki git diff käytöstä:
 
-	/srv/salt$ git diff a9fdcd1fe2ea4adc5052725305eb3e8454a6edef 69b2abc0da6016fa704f2a6ae44a8796ec11ad2d
+	xubuntu3$ /srv/salt$ git diff a9fdcd1fe2ea4adc5052725305eb3e8454a6edef 69b2abc0da6016fa704f2a6ae44a8796ec11ad2d
 	diff --git a/raportti-h3.md b/raportti-h3.md
 	index e556ba2..84cb4ff 100644
 	--- a/raportti-h3.md
@@ -89,7 +95,24 @@ Esimerkki git diff käytöstä:
 	 - Luotu Githubiin repository salt
 	 - siirretty vanha /srv/salt kansio turvaan
 
+Lähde: https://www.atlassian.com/git/tutorials/saving-changes/git-diff
 
 ### git blame
+
+
+Git blamella on virheiden etsinnässä käytettävä työkalu.
+
+esimerkki git blame käytöstä:
+
+	xubuntu3$ /srv/salt$ git blame README.md
+	^62ebff5 (a1704565 2018-11-14 04:32:13 +0200 1) # salt
+	^62ebff5 (a1704565 2018-11-14 04:32:13 +0200 2) Slat repositary for testing purposes
+
+
+Edellisessä esimerkissä ajamalla git blame -komento tulostuu tiedot muutoksista tiedostossa. Tiedot esitetään järjestyksessä ID, Käytttäjän nimi/nimimerkki, aika jolloin muutos tehty, ja tieto mitä on muutettu.
+
+Git blamella voi tehdä muitakin edistyneempiä asioita.
+
+Lähde: https://www.atlassian.com/git/tutorials/inspecting-a-repository/git-blame
 
 
