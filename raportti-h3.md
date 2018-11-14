@@ -1,6 +1,6 @@
 # Raportti
 
-Taustaa:
+## Taustaa:
 
 - Luotu Githubiin repository salt
 - siirretty vanha /srv/salt kansio turvaan
