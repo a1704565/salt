@@ -3,7 +3,11 @@
 
 echo "Starting"
 
-setxkbmap fi && sudo apt-get update && sudo apt-get install -y salt-master salt-minion git && sudo timedatectl set-timezone Europe/Helsinki && sudo git clone https://github.com/a1704565/salt.git /srv/salt
+setxkbmap fi
+sudo apt-get update
+sudo apt-get install -y salt-master salt-minion git
+sudo timedatectl set-timezone Europe/Helsinki
+sudo git clone https://github.com/a1704565/salt.git /srv/salt
 
 git config --global user.email "juha-pekka.pulkkinen@myy.haaga-helia.fi"
 git config --global user.name "Juha-Pekka Pulkkinen"
