@@ -1,8 +1,12 @@
+#manuaalinen copy / paste lista, jos starttiskripti ei toimmi
 setxkbmap fi && sudo apt-get update && sudo apt-get install -y salt-master git && sudo git clone https://github.com/a1704565/salt.git /srv/salt
 
+#Git komennot
 git config --global user.email "juha-pekka.pulkkinen@myy.haaga-helia.fi"
 git config --global user.name "Juha-Pekka Pulkkinen"
 
+#Git kirjautumisen  muistaminen
 git config --global credential.helper "cache --timeout=3600"
 
+#perus add / commit / push  pull
 sudo git add . && sudo git commit; sudo git pull && sudo git push
