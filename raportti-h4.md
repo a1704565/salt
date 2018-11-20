@@ -159,6 +159,48 @@ echo "Start script completed... You can start working now!"
 
 ```
 
+Tehtävän teko lopetettu 23:00
+
+
+## Tehtäväksianto c)
+
+Tee joko b tai c:
+
+b) Lokianalytiikka. Kokeile viimeisintä versiota Jussin, Einon ja Sakun lokien analytiikasta. Täytä tai kommentoi GitHub-sivulla jotain bugia tai kehitysehdotusta. (Jos teit tätä tunnilla, tee uusi bugiraportti/kommentti uusimmasta versiosta) https://github.com/jisosomppi/log-analysis/tree/master/salt
+
+c) Vagrant. Asenna Vagrant. Kokeile jotain uutta kuvaa Atlaksesta. Huomaa, että kuvat ovat vieraita binäärejä, ja virtuaalikoneista on mahdollista murtautua ulos. Jokohan Ubuntun virallinen  Suodatin: VirtualBox, järjestys: Most downloads. https://app.vagrantup.com/boxes/search?provider=virtualbox. 
+
+**Lähde:** [terokarvinen.com](http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p)
+
+
+
+Tehtävä aloitettu klo. 23:05
+
+Tehtävä c) aloitettu selaamalla tehtävänannossa esiintynyttä sivustoa ja luomalla kansio vatest käyttäjän kotikansioon. Vagrant ja virtualbox ovat jo asennettu konelle, tehtävässä a) käyty jo läpi tämä vaihe.
+
+Valittu uudeksi kuvaksi kokeiluun debian/jessie64. [Linkki](https://app.vagrantup.com/debian/boxes/jessie64)
+
+
+```Shell
+mkdir vatest
+cd vatest/
+vagrant init debian/jessie64
+vagrant ssh
+
+vagrant@jessie:~$
+```
+
+SSH-yhteys toimi normaalisti, joten päätin testata Debianilla päivitysten ajamista. Sekä tuota tehtäväss a) luotua skriptiä.
+
+```Shell
+sudo apt-get update
+sudo apt-get upgrade
+
+wget 
+```
+
+
+
 
 ---
 # Lähdeluettelo
