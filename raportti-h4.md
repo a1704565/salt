@@ -12,6 +12,8 @@ Tämän raportin tehtävissä on käytetty edellisistä tehtävistä tuttua Leno
 * Käyttöjärjestelmä: Xubuntu 18.04 LTS
 * Lyvytila: noin 120GB (SSD), toinen vastaava osio varattu Windows 10 käyttöön
 
+
+**huom**
 Tehtäväksianto löytyy kohdassa h4 osoitteessa (tarkistettu viimeksi 20.11.2018):
 
 [http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p](URL) [1]
