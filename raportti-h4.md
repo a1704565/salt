@@ -196,11 +196,36 @@ SSH-yhteys toimi normaalisti, joten päätin testata Debianilla päivitysten aja
 sudo apt-get update
 sudo apt-get upgrade
 
-wget 
+wget https://raw.githubusercontent.com/a1704565/salt/master/start/start.sh
+bash start.sh
 ```
 
+Kaikki toimi tähän asti normaalisti. Testattu tässä vaiheessa vielä ajaa salt-komento.
 
+```Shell
+vagrant@jessie:~$ sudo salt '*' cmd.run 'whoami'
+labrabuntu:
+    root
+```
 
+Myös tämä testi toimi.
+
+Vagrantin pysäytys ja virtuaalikoneen tuhoaminen.
+
+```Shell
+vagrant@jessie:~$ exit
+logout
+Connection to 127.0.0.1 closed.
+
+/vatest$ vagrant halt
+==> default: Attempting graceful shutdown of VM...
+/vatest$ vagrant destroy
+    default: Are you sure you want to destroy the 'default' VM? [y/N] 
+==> default: Destroying VM and associated drives...
+
+```
+
+Tehtävän teko lopetettu 23:45
 
 ---
 # Lähdeluettelo
