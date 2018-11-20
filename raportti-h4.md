@@ -14,6 +14,7 @@ Tämän raportin tehtävissä on käytetty edellisistä tehtävistä tuttua Leno
 
 
 **huom**
+
 Tehtäväksianto löytyy kohdassa h4 osoitteessa (tarkistettu viimeksi 20.11.2018):
 
 [http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p](URL) [1]
@@ -33,7 +34,7 @@ Kasaamani skripti on tehhty lähinnä omaan hyötykäyttöön, joten siinä on m
 
 Skriptiä on testattu ajaa ensin asteittain käsin, hyväksikäyttäen vagrant/virtualbox menetelmää ja sen jälkeen koottu shellscript tiedostoksi.
 
-Uusin versio johon teen jatkossa muutoksia, löytyy tästä linkistä: [https://github.com/a1704565/salt/blob/master/start/start.sh](URL)
+Uusin versio johon teen jatkossa muutoksia, löytyy tästä linkistä: [https://raw.githubusercontent.com/a1704565/salt/master/start/start.sh](URL)
 
 
 
