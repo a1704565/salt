@@ -17,4 +17,10 @@ git config --global credential.helper "cache --timeout=3600"
 
 echo -e 'master: localhost\nid: labrabuntu'|sudo tee /etc/salt/minion
 
+sudo systemctl restart salt-minion.service
+
+sleep 5s
+
+sudo salt-key -yA
+
 echo "Done."
