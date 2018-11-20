@@ -1,4 +1,4 @@
-#Raportti h4
+# Raportti h4
 
 Tämän raportin tehtävissä on käytetty edellisistä tehtävistä tuttua Lenovon kannettavaa tietokonetta:
 
@@ -18,7 +18,9 @@ Tehtäväksianto löytyy kohdassa h4 osoitteessa (tarkistettu viimeksi 20.11.201
 Raportin koostaminen aloitettu klo. 11:08 20.11.2018
 Varsinaisesti kohdan a) tehtävää on tehty koulssa samalla kannettavalla koneella, jolla raportti kirjoitettu. Tehtävää on tehty osissa eri kellonaikoina samana päivänä.
 
-##Tehtäväksianto a)
+
+## Tehtäväksianto a)
+
 a) Tee skripti, joka tekee koneestasi salt-orjan. **Lähde:** Tero Karvinen [1]
 
 
@@ -31,7 +33,7 @@ Skriptiä on testattu ajaa ensin asteittain käsin hyväksikäyttäen vagrant/vi
 
 Version sisältö raportoinin hetkellä noin klo. 11:30
 
-```Shell
+```Shellscript
 
 #!/bin/bash
 #Copyright 2018 Juha-Pekka Pulkkinen https://github.com/a1704565 GNU General Public License v3.0
@@ -83,7 +85,7 @@ Tauko noin klo. 12:25
 
 
 ---
-#Lähdeluettelo
+# Lähdeluettelo
 
 * Tero Karvinen: [http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p](URL) [1]
 * 
