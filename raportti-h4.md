@@ -81,7 +81,7 @@ echo "Start script completed... You can start working now!"
 	* määritetty käyttäjän sähköposti
 	* määritetty käyttäjän nimi
 	* määritys että git ei kysele salasanaa liian useasti
-* echo ja tee komennoilla ajetaan salt masterin tiedot oikeaan kansioon (master on tässä oma minioninsa)
+* echo ja tee komennoilla ajetaan salt masterin tiedot oikeaan paikkaan ja määritetään minionin id (master on tässä oma minioninsa)
 * systemctl restart komennolla käynnistetään uudestaan tarvittava palvelu
 * sleep komento laittaa skriptin odottamaan 5 sekuntia, jotta edellinen toiminto ehtii suorittautua loppuun.
 * salt-key -yA hyväksyy automaattisesti minionin
