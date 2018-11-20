@@ -1,11 +1,13 @@
-#Vagrantfile - test
+#Copyright 2018 Juha-Pekka Pulkkinen https://github.com/a1704565 GNU General Public License v3.0
+#Vagrantfile - For testing purposes only
 #Based on http://terokarvinen.com/2018/automatically-provision-vagrant-virtualmachines-as-salt-slaves
 
 $tscript = <<TSCRIPT
 sudo apt-get update
-sudo apt-get -y install salt-minion
-echo -e 'master: 172.28.171.21\nid: vagrant001'|sudo tee /etc/salt/minion
+sudo apt-get -y install salt-master salt-minion
+echo -e 'master: 127.0.0.1\nid: vagrant001'|sudo tee /etc/salt/minion
 sudo systemctl restart salt-minion.service
+sudo salt-key -Ay
 TSCRIPT
 
 Vagrant.configure("2") do |config|
