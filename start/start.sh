@@ -1,7 +1,8 @@
 #!/bin/bash
-#based on work by Tero Karvinen source: https://github.com/terokarvinen/sirotin/blob/master/run.sh
+#based on work by Tero Karvinen, Source: https://github.com/terokarvinen/sirotin/blob/master/run.sh
+#also based on other work by Tero Karvinen; Source: http://terokarvinen.com/2018/salt-quickstart-salt-stack-master-and-slave-on-ubuntu-linux
 
-echo "Starting"
+echo "Starting! Please wait..."
 
 setxkbmap fi
 sudo apt-get update
