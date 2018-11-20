@@ -15,11 +15,11 @@ Tämän raportin tehtävissä on käytetty edellisistä tehtävistä tuttua Leno
 
 **Huom!**
 
-Tehtäväksianto löytyy kohdassa h4 tästä linkistä; [terokarvinen.com](http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p) [1] (tarkistettu viimeksi 20.11.2018):
+Tehtäväksianto löytyy kohdassa h4 tästä linkistä; [terokarvinen.com](http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p) (tarkistettu viimeksi 20.11.2018):
 
 
 
-Raportin koostaminen aloitettu klo. 11:08 20.11.2018.
+Raportin koostaminen aloitettu 20.11.2018 klo. 11:08.
 
 Tehtäviä on tehty osissa eri kellonaikoina samana päivänä, ajat pyritty merkkaamaan myös mahdollisimman tarkasti.
 
@@ -76,15 +76,16 @@ echo "Start script completed... You can start working now!"
 * setxkmap fi määrittää käytettävän koneen näppäimistön suomeksi.
 * apt-get komento päivittää listan ja seuraava apt-get asentaat salt-master ja salt-minion ohjelmistot.
 * timedatectl avulla laitetaan aikavyöhyke oikeaksi.
-* git komennoilla ajetaan perus konfiguraatiot kohdalleen omia tarkoituksiani varten
+* git clone komennolla kloonataan salt repository polkuun /srv/salt 
+* git config komennoilla ajetaan perus konfiguraatiot kohdalleen omia tarkoituksiani varten
 	* määritetty käyttäjän sähköposti
 	* määritetty käyttäjän nimi
 	* määritys että git ei kysele salasanaa liian useasti
-* echo ja tee komennoilla ajetaan salt masterin tiedot oikeaan kansioon
+* echo ja tee komennoilla ajetaan salt masterin tiedot oikeaan kansioon (master on tässä oma minioninsa)
 * systemctl restart komennolla käynnistetään uudestaan tarvittava palvelu
 * sleep komento laittaa skriptin odottamaan 5 sekuntia, jotta edellinen toiminto ehtii suorittautua loppuun.
-* salt-key -yA komento automaattisesti hyväksyy minionin
-* viimeinen echo kertoo että homma on valmis.
+* salt-key -yA hyväksyy automaattisesti minionin
+* viimeinen echo kertoo, että homma on valmis.
 
 
 **Testausmenetelmä:**
@@ -189,6 +190,8 @@ vagrant ssh
 
 vagrant@jessie:~$
 ```
+Kuva tilanteesta:
+![vagrant](img/vagrant01.png)
 
 SSH-yhteys toimi normaalisti, joten päätin testata Debianilla päivitysten ajamista. Sekä tuota tehtäväss a) luotua skriptiä.
 
