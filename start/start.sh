@@ -1,6 +1,8 @@
 #!/bin/bash
-#based on work by Tero Karvinen, Source: https://github.com/terokarvinen/sirotin/blob/master/run.sh
-#also based on other work by Tero Karvinen; Source: http://terokarvinen.com/2018/salt-quickstart-salt-stack-master-and-slave-on-ubuntu-linux
+#Based on work by Tero Karvinen;
+# Sourcse:
+#  https://github.com/terokarvinen/sirotin/blob/master/run.sh
+#  http://terokarvinen.com/2018/salt-quickstart-salt-stack-master-and-slave-on-ubuntu-linux
 
 echo "Starting! Please wait..."
 
