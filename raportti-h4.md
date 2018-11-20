@@ -48,7 +48,6 @@ Raportoinnin hetkellä noin klo. 11:30 tilanne näytti seuraavalta:
 #https://github.com/terokarvinen/sirotin/blob/master/run.sh
 #http://terokarvinen.com/2018/salt-quickstart-salt-stack-master-and-slave-on-ubuntu-linux
 
-
 echo "Running the start script! Please wait..."
 
 setxkbmap fi
@@ -124,7 +123,7 @@ Tehtävien teko keskeytyi noin klo. 12:25
 
 Tehtävien tekoa jatkettu noin klo. 22:20
 
-2. setxkbmap fi ja timedatectl tuottivat virheitä myös, mutta tilanne kokeiltu boottaamalla USB-tikulta live versio Xubuntu 18.04 LTS ja ajamalla sama testi sillä. Kaikki toimi oikein, joten ongelma liittyi jotenkin virtualisoituun ympäristöön. Muutettu kuitenkin lopullista skriptiä hieman lisäämällä toinen lyhyempi viive aikaisempaan vaiheeseen ja siirtämällä timedatectl aikaisempaan vaiheeseen skriptissä.
+2. setxkbmap fi ja timedatectl tuottivat virheitä myös, mutta tilanne kokeiltu boottaamalla USB-tikulta live versio Xubuntu 18.04 LTS ja ajamalla sama testi sillä. Kaikki toimi oikein, joten ongelma liittyi jotenkin virtualisoituun ympäristöön. Muutettu kuitenkin lopullista skriptiä lisäämällä toinen lyhyempi viive aikaisempaan vaiheeseen, sekä siirtämällä timedatectl aikaisemmaksi skriptissä.
 
 Fyysisen testikoneen tiedot:
 * CPU: Intel Core i5-4460 @ 4x 3.4GHz
