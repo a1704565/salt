@@ -34,7 +34,7 @@ Kasaamani skripti on tehty lähinnä omaan hyötykäyttöön, joten siinä on mu
 
 Skriptiä on testattu ajaa ensin asteittain käsin, hyväksikäyttäen vagrant/virtualbox menetelmää ja sen jälkeen koottu shellscript tiedostoksi.
 
-Uusin versio johon teen jatkossa muutoksia, löytyy tästä linkistä: [start.sh](https://github.com/a1704565/salt/blob/master/start/start.sh)
+Uusin versio, johon voi tulla muutoksia vielä jatkossa, löytyy tästä linkistä: [start.sh](https://github.com/a1704565/salt/blob/master/start/start.sh)
 
 
 
@@ -88,11 +88,11 @@ echo "Start script completed... You can start working now!"
 * viimeinen echo kertoo että homma on valmis.
 
 
-**Testaus:**
+**Testausmenetelmä:**
 
-Kyseistä skriptiä on ajettu useaan kertaan onnistuneesti käyttäen vagrant cloudista löytyvää **bento/ubuntu-16.04 vagrant boxia**, suora linkki: [vagrantup.com](https://app.vagrantup.com/bento/boxes/ubuntu-16.04).
+Kyseistä skriptiä on ajettu useaan kertaan eri vaiheissa, käyttäen vagrant cloudista löytyvää **bento/ubuntu-16.04 vagrant boxia**, suora linkki: [vagrantup.com](https://app.vagrantup.com/bento/boxes/ubuntu-16.04).
 
-Koneelle oli valmiiksi asennettuna vagrant ja virtualbox, mutta kertauksen vuoksi ne ovat asennettavissa seuraavilla komennoilla
+Koneelle oli valmiiksi asennettuna vagrant ja virtualbox, mutta kertauksen vuoksi ne ovat asennettavissa seuraavilla komennoilla:
 
 ```Shell
 sudo apt-get update
@@ -109,7 +109,7 @@ vagrant up
 vagrant ssh
 ```
 
-ssh:n kautta ladattu vagrantille githubista sinne puskettu versio tuosta start.sh skriptistä.
+Vagrant ssh-toimintoa hyödyntäen ladattu vagrantille githubiin puskettu versio tuosta start.sh skriptistä ja ajettu se bash komennolla.
 
 ```Shell
 wget https://raw.githubusercontent.com/a1704565/salt/master/start/start.sh
@@ -124,8 +124,14 @@ Tehtävien teko keskeytyi noin klo. 12:25
 
 Tehtävien tekoa jatkettu noin klo. 22:20
 
-2. setxkbmap fi ja timedatectl tuottivat virheitä myös, mutta tilanne kokeiltu boottaamalla USB-tikulta live versio Xubuntu 18.04 LTS ja ajamalla sama testi sillä. Kaikki toimi oikein, joten ongelma liittyi jotenkin virtualisoituun ympäristöön. Muutettu kuitenkin lopullista scriptiä hieman lisäämällä toinen lyhyempi viive aikaisempaan vaiheeseen ja siirtämällä timedatectl aikaisempaan vaiheeseen scriptissä.
+2. setxkbmap fi ja timedatectl tuottivat virheitä myös, mutta tilanne kokeiltu boottaamalla USB-tikulta live versio Xubuntu 18.04 LTS ja ajamalla sama testi sillä. Kaikki toimi oikein, joten ongelma liittyi jotenkin virtualisoituun ympäristöön. Muutettu kuitenkin lopullista skriptiä hieman lisäämällä toinen lyhyempi viive aikaisempaan vaiheeseen ja siirtämällä timedatectl aikaisempaan vaiheeseen skriptissä.
 
+Fyysisen testikoneen tiedot:
+* CPU: Intel Core i5-4460 @ 4x 3.4GHz
+* GPU: nVidia GeForce GTX 1060 6GB
+* RAM: 16GB, 1600MHz DDR3
+
+**Lopullinen toimivaksi testattu scripti:**
 ```Shell
 #!/bin/bash
 #Copyright 2018 Juha-Pekka Pulkkinen https://github.com/a1704565 GNU General Public License v3.0
@@ -153,11 +159,6 @@ sudo salt-key -yA
 echo "Start script completed... You can start working now!"
 
 ```
-
-Fyysisen testikoneen tiedot:
-* CPU: Intel Core i5-4460 @ 4x 3.4GHz
-* GPU: nVidia GeForce GTX 1060 6GB
-* RAM: 16GB, 1600MHz DDR3
 
 
 ---
