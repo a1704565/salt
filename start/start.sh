@@ -2,7 +2,7 @@
 #Copyright 2018 Juha-Pekka Pulkkinen https://github.com/a1704565 GNU General Public License v3.0
 #Based on work by Tero Karvinen; https://github.com/terokarvinen/sirotin/blob/master/run.sh & http://terokarvinen.com/2018/salt-quickstart-salt-stack-master-and-slave-on-ubuntu-linux
 
-echo "Starting! Please wait..."
+echo "Running the start script! Please wait..."
 
 setxkbmap fi
 sudo apt-get update
