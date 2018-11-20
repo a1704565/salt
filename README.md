@@ -1,2 +1,2 @@
 # salt
-Slat repositary for testing purposes
+Salt repositary for testing purposes and learning
