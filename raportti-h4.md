@@ -13,7 +13,7 @@ Tämän raportin tehtävissä on käytetty edellisistä tehtävistä tuttua Leno
 * Lyvytila: noin 120GB (SSD), toinen vastaava osio varattu Windows 10 käyttöön
 
 
-**huom**
+**Huom!**
 
 Tehtäväksianto löytyy kohdassa h4 tästä linkistä; [terokarvinen.com](http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p) [1] (tarkistettu viimeksi 20.11.2018):
 
@@ -26,7 +26,7 @@ Tehtäviä on tehty osissa eri kellonaikoina samana päivänä, ajat pyritty mer
 
 ## Tehtäväksianto a)
 
-a) Tee skripti, joka tekee koneestasi salt-orjan. **Lähde:** Tero Karvinen [1]
+a) Tee skripti, joka tekee koneestasi salt-orjan. **Lähde:** [terokarvinen.com](http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p)
 
 
 Kasaamani skripti on tehty lähinnä omaan hyötykäyttöön, joten siinä on muutakin toiminnallisuutta mukana. Selitteet löytyvät koodin jälkeen.
@@ -116,10 +116,48 @@ wget https://raw.githubusercontent.com/a1704565/salt/master/start/start.sh
 bash start.sh
 ```
 
-Aluksi testaus tuotti virheitä, mutta lisäämällä tuon 5 sekunnin viiveen skriptiin, asia tuli kuntoon ja myöhemmät testaukset varmistivat tämän.
+**Huomioitavaa:**
 
-Tauko noin klo. 12:25
+1. Aluksi testaus tuotti virheen liittyen salt-key kohtaan, mutta ongelma korjaantui lisäämällä skriptiin tuo 5 sekunnin viive ennen kyseistä toimintoa.
 
+Tehtävien teko keskeytyi noin klo. 12:25
+
+Tehtävien tekoa jatkettu noin klo. 22:20
+
+2. setxkbmap fi ja timedatectl tuottivat virheitä myös, mutta tilanne kokeiltu boottaamalla USB-tikulta live versio Xubuntu 18.04 LTS ja ajamalla sama testi sillä. Kaikki toimi oikein, joten ongelma liittyi jotenkin virtualisoituun ympäristöön. Muutettu kuitenkin lopullista scriptiä hieman lisäämällä toinen lyhyempi viive aikaisempaan vaiheeseen ja siirtämällä timedatectl aikaisempaan vaiheeseen scriptissä.
+
+```Shell
+#!/bin/bash
+#Copyright 2018 Juha-Pekka Pulkkinen https://github.com/a1704565 GNU General Public License v3.0
+#Based on work by Tero Karvinen; https://github.com/terokarvinen/sirotin/blob/master/run.sh & http://terokarvinen.com/2018/salt-quickstart-salt-stack-master-and-slave-on-ubuntu-linux
+
+echo "Running the start script! Please wait..."
+
+setxkbmap fi
+sudo timedatectl set-timezone Europe/Helsinki
+sleep 2s
+sudo apt-get update
+sudo apt-get install -y salt-master salt-minion git
+sudo git clone https://github.com/a1704565/salt.git /srv/salt
+
+git config --global user.email "juha-pekka.pulkkinen@myy.haaga-helia.fi"
+git config --global user.name "Juha-Pekka Pulkkinen"
+git config --global credential.helper "cache --timeout=3600"
+
+echo -e 'master: localhost\nid: labrabuntu'|sudo tee /etc/salt/minion
+
+sudo systemctl restart salt-minion.service
+sleep 5s
+sudo salt-key -yA
+
+echo "Start script completed... You can start working now!"
+
+```
+
+Fyysisen testikoneen tiedot:
+* CPU: Intel Core i5-4460 @ 4x 3.4GHz
+* GPU: nVidia GeForce GTX 1060 6GB
+* RAM: 16GB, 1600MHz DDR3
 
 
 ---
