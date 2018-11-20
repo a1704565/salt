@@ -190,20 +190,17 @@ vagrant ssh
 
 vagrant@jessie:~$
 ```
-Kuva tilanteesta:
+Kuvankaappaus edeltävästä tilanteesta:
 ![vagrant](img/vagrant01.png)
 
-SSH-yhteys toimi normaalisti, joten päätin testata Debianilla päivitysten ajamista. Sekä tuota tehtäväss a) luotua skriptiä.
+SSH-yhteys toimi normaalisti, joten päätin testata tehtäväss a) luotua skriptiä.
 
 ```Shell
-sudo apt-get update
-sudo apt-get upgrade
-
 wget https://raw.githubusercontent.com/a1704565/salt/master/start/start.sh
 bash start.sh
 ```
 
-Kaikki toimi tähän asti normaalisti. Testattu tässä vaiheessa vielä ajaa salt-komento.
+Kaikki toimi tähän asti vastaavasti kuten kohdassa a). Testattu tässä vaiheessa vielä ajaa salt-komento.
 
 ```Shell
 vagrant@jessie:~$ sudo salt '*' cmd.run 'whoami'
@@ -213,7 +210,9 @@ labrabuntu:
 
 Myös tämä testi toimi.
 
-Vagrantin pysäytys ja virtuaalikoneen tuhoaminen.
+
+
+Vagrantin pysäytys ja virtuaalikoneen tuhoaminen:
 
 ```Shell
 vagrant@jessie:~$ exit
