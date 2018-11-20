@@ -12,15 +12,12 @@ sudo git clone https://github.com/a1704565/salt.git /srv/salt
 
 git config --global user.email "juha-pekka.pulkkinen@myy.haaga-helia.fi"
 git config --global user.name "Juha-Pekka Pulkkinen"
-
 git config --global credential.helper "cache --timeout=3600"
 
 echo -e 'master: localhost\nid: labrabuntu'|sudo tee /etc/salt/minion
 
 sudo systemctl restart salt-minion.service
-
 sleep 5s
-
 sudo salt-key -yA
 
-echo "Done."
+echo "Start script completed... You can start working now!"
