@@ -21,7 +21,7 @@ Tehtäväksianto löytyy kohdassa h4 tästä linkistä; [terokarvinen.com](http:
 
 Raportin koostaminen aloitettu klo. 11:08 20.11.2018.
 
-Tehtäviä on tehty osissa eri kellonaikoina samana päivänä, aijat pyritty merkkaamaan myös mahdollisimman tarkasti.
+Tehtäviä on tehty osissa eri kellonaikoina samana päivänä, ajat pyritty merkkaamaan myös mahdollisimman tarkasti.
 
 
 ## Tehtäväksianto a)
@@ -29,16 +29,16 @@ Tehtäviä on tehty osissa eri kellonaikoina samana päivänä, aijat pyritty me
 a) Tee skripti, joka tekee koneestasi salt-orjan. **Lähde:** Tero Karvinen [1]
 
 
-Kasaamani skripti on tehhty lähinnä omaan hyötykäyttöön, joten siinä on muutakin toiminnallisuutta mukana. Selitteet löytyvät koodin jälkeen.
+Kasaamani skripti on tehty lähinnä omaan hyötykäyttöön, joten siinä on muutakin toiminnallisuutta mukana. Selitteet löytyvät koodin jälkeen.
 
 
 Skriptiä on testattu ajaa ensin asteittain käsin, hyväksikäyttäen vagrant/virtualbox menetelmää ja sen jälkeen koottu shellscript tiedostoksi.
 
-Uusin versio johon teen jatkossa muutoksia, löytyy tästä linkistä: [Uusin versio](https://raw.githubusercontent.com/a1704565/salt/master/start/start.sh)
+Uusin versio johon teen jatkossa muutoksia, löytyy tästä linkistä: [start.sh](https://github.com/a1704565/salt/blob/master/start/start.sh)
 
 
 
-Raportoinin hetkellä noin klo. 11:30 tilanne näytti seuraavalta:
+Raportoinnin hetkellä noin klo. 11:30 tilanne näytti seuraavalta:
 
 ```Shell
 
@@ -71,11 +71,11 @@ echo "Start script completed... You can start working now!"
 
 ```
 
-**Skrptin selite:**
+**Skriptin selite:**
 
-* echo komennlla ilmoitetaan skriptin käyttäjälle, että prosessi on lähtenyt käyntiin.
+* echo komennolla ilmoitetaan skriptin käyttäjälle, että prosessi on lähtenyt käyntiin.
 * setxkmap fi määrittää käytettävän koneen näppäimistön suomeksi.
-* apt-get komento päivittää listan ja seuraava apt-get asentaat salt-master ja salt-minion ohjlemistot.
+* apt-get komento päivittää listan ja seuraava apt-get asentaat salt-master ja salt-minion ohjelmistot.
 * timedatectl avulla laitetaan aikavyöhyke oikeaksi.
 * git komennoilla ajetaan perus konfiguraatiot kohdalleen omia tarkoituksiani varten
 	* määritetty käyttäjän sähköposti
@@ -99,8 +99,9 @@ sudo apt-get update
 sudo apt-get -y install vagrant virtualbox
 ```
 
-Vagrant otettu käyttöön seuraavalla menetelmällä.
-```
+Vagrant otettu käyttöön käyttäjän home-kansiossa seuraavalla menetelmällä.
+
+```Shell
 mkdir vagr
 cd vagr/
 vagrant init bento/ubuntu-16.04
@@ -110,10 +111,12 @@ vagrant ssh
 
 ssh:n kautta ladattu vagrantille githubista sinne puskettu versio tuosta start.sh skriptistä.
 
-```ssh
+```Shell
 wget https://raw.githubusercontent.com/a1704565/salt/master/start/start.sh
 bash start.sh
-``` 
+```
+
+Aluksi testaus tuotti virheitä, mutta lisäämällä tuon 5 sekunnin viiveen skriptiin, asia tuli kuntoon ja myöhemmät testaukset varmistivat tämän.
 
 Tauko noin klo. 12:25
 
