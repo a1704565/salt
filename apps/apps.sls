@@ -1,3 +1,5 @@
+#Copyright 2018 Juha-Pekka Pulkkinen https://github.com/a1704565 GNU General Public License v3.0
+
 common:
   pkg.installed:
     - pkgs:
@@ -18,7 +20,7 @@ productivity:
     - pkgs:
       - calibre
       - focuswriter
-      - retext
+      - gedit
       - libreoffice
       - scribus
 
