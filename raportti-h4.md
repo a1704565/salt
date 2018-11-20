@@ -13,10 +13,12 @@ Tämän raportin tehtävissä on käytetty edellisistä tehtävistä tuttua Leno
 * Lyvytila: noin 120GB (SSD), toinen vastaava osio varattu Windows 10 käyttöön
 
 Tehtäväksianto löytyy kohdassa h4 osoitteessa (tarkistettu viimeksi 20.11.2018):
+
 [http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p](URL) [1]
 
-Raportin koostaminen aloitettu klo. 11:08 20.11.2018
-Varsinaisesti kohdan a) tehtävää on tehty koulssa samalla kannettavalla koneella, jolla raportti kirjoitettu. Tehtävää on tehty osissa eri kellonaikoina samana päivänä.
+Raportin koostaminen aloitettu klo. 11:08 20.11.2018.
+
+Tehtäviä on tehty osissa eri kellonaikoina samana päivänä, aijat pyritty merkkaamaan myös mahdollisimman tarkasti.
 
 
 ## Tehtäväksianto a)
@@ -27,13 +29,15 @@ a) Tee skripti, joka tekee koneestasi salt-orjan. **Lähde:** Tero Karvinen [1]
 Kasaamani skripti on tehhty lähinnä omaan hyötykäyttöön, joten siinä on muutakin toiminnallisuutta mukana. Selitteet löytyvät koodin jälkeen.
 
 
-Skriptiä on testattu ajaa ensin asteittain käsin hyväksikäyttäen vagrant/virtualbox menetelmää ja sen jälkeen koottu .sh shellscript tiedostoksi, jolle ajettu ajoittain git commit. Uusin versio johon teen jatkossa muutoksia löytyy tästä linkistä: [https://github.com/a1704565/salt/blob/master/start/start.sh](URL)
+Skriptiä on testattu ajaa ensin asteittain käsin, hyväksikäyttäen vagrant/virtualbox menetelmää ja sen jälkeen koottu shellscript tiedostoksi.
+
+Uusin versio johon teen jatkossa muutoksia, löytyy tästä linkistä: [https://github.com/a1704565/salt/blob/master/start/start.sh](URL)
 
 
 
-Version sisältö raportoinin hetkellä noin klo. 11:30
+Raportoinin hetkellä noin klo. 11:30 tilanne näytti seuraavalta:
 
-```Shellscript
+```Shell
 
 #!/bin/bash
 #Copyright 2018 Juha-Pekka Pulkkinen https://github.com/a1704565 GNU General Public License v3.0
@@ -64,7 +68,7 @@ echo "Start script completed... You can start working now!"
 
 ```
 
-**Selite:**
+**Skrptin selite:**
 
 * echo komennlla ilmoitetaan skriptin käyttäjälle, että prosessi on lähtenyt käyntiin.
 * setxkmap fi määrittää käytettävän koneen näppäimistön suomeksi.
@@ -79,6 +83,34 @@ echo "Start script completed... You can start working now!"
 * sleep komento laittaa skriptin odottamaan 5 sekuntia, jotta edellinen toiminto ehtii suorittautua loppuun.
 * salt-key -yA komento automaattisesti hyväksyy minionin
 * viimeinen echo kertoo että homma on valmis.
+
+
+**Testaus:**
+
+Kyseistä skriptiä on ajettu useaan kertaan onnistuneesti käyttäen vagrant cloudista löytyvää **bento/ubuntu-16.04 vagrant boxia**, suora linkki: [https://app.vagrantup.com/bento/boxes/ubuntu-16.04](url).
+
+Koneelle oli valmiiksi asennettuna vagrant ja virtualbox, mutta kertauksen vuoksi ne ovat asennettavissa seuraavilla komennoilla
+
+```Shell
+sudo apt-get update
+sudo apt-get -y install vagrant virtualbox
+```
+
+Vagrant otettu käyttöön seuraavalla menetelmällä.
+```
+mkdir vagr
+cd vagr/
+vagrant init bento/ubuntu-16.04
+vagrant up
+vagrant ssh
+```
+
+ssh:n kautta ladattu vagrantille githubista sinne puskettu versio tuosta start.sh skriptistä.
+
+```ssh
+wget https://raw.githubusercontent.com/a1704565/salt/master/start/start.sh
+bash start.sh
+``` 
 
 Tauko noin klo. 12:25
 
