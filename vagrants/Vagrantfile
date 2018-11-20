@@ -6,8 +6,10 @@ $tscript = <<TSCRIPT
 sudo apt-get update
 sudo apt-get -y install salt-master salt-minion
 echo -e 'master: 127.0.0.1\nid: vagrant001'|sudo tee /etc/salt/minion
+sleep 2s
 sudo systemctl restart salt-minion.service
-sudo salt-key -Ay
+sleep 5s
+sudo salt-key -yA
 TSCRIPT
 
 Vagrant.configure("2") do |config|
