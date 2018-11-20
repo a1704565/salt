@@ -69,9 +69,9 @@ echo "Start script completed... You can start working now!"
 * apt-get komento päivittää listan ja seuraava apt-get asentaat salt-master ja salt-minion ohjlemistot.
 * timedatectl avulla laitetaan aikavyöhyke oikeaksi.
 * git komennoilla ajetaan perus konfiguraatiot kohdalleen omia tarkoituksiani varten
- * määritetty käyttäjän sähköposti
- * määritetty käyttäjän nimi
- * määritys että git ei kysele salasanaa liian useasti
+	* määritetty käyttäjän sähköposti
+	* määritetty käyttäjän nimi
+	* määritys että git ei kysele salasanaa liian useasti
 * echo ja tee komennoilla ajetaan salt masterin tiedot oikeaan kansioon
 * systemctl restart komennolla käynnistetään uudestaan tarvittava palvelu
 * sleep komento laittaa skriptin odottamaan 5 sekuntia, jotta edellinen toiminto ehtii suorittautua loppuun.
