@@ -15,9 +15,9 @@ Tämän raportin tehtävissä on käytetty edellisistä tehtävistä tuttua Leno
 
 **huom**
 
-Tehtäväksianto löytyy kohdassa h4 osoitteessa (tarkistettu viimeksi 20.11.2018):
+Tehtäväksianto löytyy kohdassa h4 tästä linkistä; [terokarvinen.com](http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p) [1] (tarkistettu viimeksi 20.11.2018):
 
-[http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p](URL) [1]
+
 
 Raportin koostaminen aloitettu klo. 11:08 20.11.2018.
 
@@ -34,7 +34,7 @@ Kasaamani skripti on tehhty lähinnä omaan hyötykäyttöön, joten siinä on m
 
 Skriptiä on testattu ajaa ensin asteittain käsin, hyväksikäyttäen vagrant/virtualbox menetelmää ja sen jälkeen koottu shellscript tiedostoksi.
 
-Uusin versio johon teen jatkossa muutoksia, löytyy tästä linkistä: [https://raw.githubusercontent.com/a1704565/salt/master/start/start.sh](URL)
+Uusin versio johon teen jatkossa muutoksia, löytyy tästä linkistä: [Uusin versio](https://raw.githubusercontent.com/a1704565/salt/master/start/start.sh)
 
 
 
@@ -90,7 +90,7 @@ echo "Start script completed... You can start working now!"
 
 **Testaus:**
 
-Kyseistä skriptiä on ajettu useaan kertaan onnistuneesti käyttäen vagrant cloudista löytyvää **bento/ubuntu-16.04 vagrant boxia**, suora linkki: [https://app.vagrantup.com/bento/boxes/ubuntu-16.04](url).
+Kyseistä skriptiä on ajettu useaan kertaan onnistuneesti käyttäen vagrant cloudista löytyvää **bento/ubuntu-16.04 vagrant boxia**, suora linkki: [vagrantup.com](https://app.vagrantup.com/bento/boxes/ubuntu-16.04).
 
 Koneelle oli valmiiksi asennettuna vagrant ja virtualbox, mutta kertauksen vuoksi ne ovat asennettavissa seuraavilla komennoilla
 
@@ -122,5 +122,4 @@ Tauko noin klo. 12:25
 ---
 # Lähdeluettelo
 
-* Tero Karvinen: [http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p](URL) [1]
-* 
+1. Tero Karvinen: [terokarvinen.com](http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p)
