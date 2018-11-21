@@ -133,23 +133,23 @@ Lisää testausta. Asennettu testimielessä htop niminen pieni ohjelma. Kaikki n
 ```Shell
 Lenovo$ sudo salt '*' pkg.install htop
 xubuntu1:
-       ----------
+    ----------
     htop:
-       ----------
+        ----------
         new:
             2.1.0-3
         old:
 mint1:
-       ----------
+    ----------
     htop:
-       ----------
+        ----------
         new:
             2.1.0-3
         old:
 xubuntu2:
-       ----------
+    ----------
     htop:
-       ----------
+        ----------
         new:
             2.1.0-3
         old:
