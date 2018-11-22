@@ -1,7 +1,5 @@
-install_workstation:
+workstation:
   pkg.installed:
     - pkgs:
-      - openssh-server
-      - leafpad
-      - libreoffice
+      - firefox
       - vlc

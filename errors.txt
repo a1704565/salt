@@ -1,0 +1,38 @@
+Total states run:     1
+Total run time: 363.267 s
+ERROR: Minions returned with non-zero exit code
+xubuntu@xubuntu:/srv/salt$ sudoedit win.sls
+xubuntu@xubuntu:/srv/salt$ sudo salt 'w10-jpp' state.apply win
+w10-jpp:
+----------
+          ID: win
+    Function: pkg.installed
+      Result: False
+     Comment: An exception occurred in this state: Traceback (most recent call last):
+                File "c:\salt\bin\lib\site-packages\salt\state.py", line 1851, in call
+                  **cdata['kwargs'])
+                File "c:\salt\bin\lib\site-packages\salt\loader.py", line 1795, in wrapper
+                  return f(*args, **kwargs)
+                File "c:\salt\bin\lib\site-packages\salt\states\pkg.py", line 1627, in installed
+                  **kwargs)
+                File "c:\salt\bin\lib\site-packages\salt\modules\win_pkg.py", line 1208, in install
+                  cached_pkg = __salt__['cp.cache_file'](installer, saltenv)
+                File "c:\salt\bin\lib\site-packages\salt\modules\cp.py", line 474, in cache_file
+                  result = _client().cache_file(path, saltenv)
+                File "c:\salt\bin\lib\site-packages\salt\fileclient.py", line 189, in cache_file
+                  return self.get_url(path, '', True, saltenv, cachedir=cachedir)
+                File "c:\salt\bin\lib\site-packages\salt\fileclient.py", line 701, in get_url
+                  raise MinionError('Error: {0} reading {1}'.format(query['error'], url))
+              salt.exceptions.MinionError: Error: HTTP 404: Not Found reading http://www.mediafire.com/download/wl5nbjaki7zbssn/ClassicShellSetup_4_2_4.exe
+     Started: 10:24:19.369730
+    Duration: 8516.677 ms
+     Changes:   
+
+Summary for w10-jpp
+------------
+Succeeded: 0
+Failed:    1
+------------
+Total states run:     1
+Total run time:   8.517 s
+
