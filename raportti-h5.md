@@ -270,12 +270,6 @@ Törmäsin ongelmaan, joita en ollut tiedostanut aikaisemmin.
 Valitettavasti ongelmaa pohtiessa aikani loppui kesken, enkä saanut tyydyttävää vastausta tähän asiaan.
 
 
-## Tehtäväksianto d)
-
-d) Valitse aihe omaksi kurssityöksi ja varaa se kommenttina aikataulusivun perään. **Lähde:** [terokarvinen.com](http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p)
-
-
-
 ---
 
 # Lähdeluettelo
