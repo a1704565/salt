@@ -241,7 +241,11 @@ PS C:\salt>
 
 Ilmeiesti myös edellisen tehtävän ongelmat voivat johtua vanhentuneesta Salt-versiosta ja/tai Windowssin tuoreimmista päivityksistä. Yritin myös asentaa firefoxia ja geditiä tällä -- local komennoilla, mutta sama virhe tulee kaikissa, silti asennus onnistuu joka kerta.
 
----
+Kuvankaappaus lopputilanteesta:
+
+![Salt Windows --local](img/w10minion/wl01.png)
+
+
 
 ## Tehtäväksianto c)
 
