@@ -132,7 +132,10 @@ Proceed? [n/Y] y
 Key for minion w10 accepted.
 ```
 
-Testaus:
+
+
+**Testaus:**
+
 ```Shell
 Lenovo$ sudo salt '*' test.ping
 w10:
