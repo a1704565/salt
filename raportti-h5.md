@@ -92,7 +92,7 @@ Seuraavaksi esitetään lisenssisopimus, joka tulee hyväksyä ennen varsinaista
 
 Oletuksena asennusohjelma kysyy Masterin IP-osoitetta tai Hostnamea.
 
-Tässä vaiheessa tarkistettu, masterin IP-soite:
+Tässä vaiheessa tarkistettu, masterin IP-osoite:
 
 ```Shell
 Lenovo$ hostname -I
@@ -113,11 +113,31 @@ Asennusohjelma saattaa ilmoittaa tarvittavasta VC_Redist_2015 paketista ja sen a
 Asennusprosessin lopuksi pitää varmistaa, että rasti on ruudussa _Start salt-minion_, jonka jälkeen asennusohjel voidaan sulkea.
 
 
+Asennuksen jälkeen tarkistin master koneella, että salt-key listaan ilmestyy tuo w10, jonka jälkeen hyväksyin sen minuoniksi.
+
+```Shell
+Lenovo$ sudo salt-key -L
+Accepted Keys:
+Denied Keys:
+Unaccepted Keys:
+w10
+Rejected Keys:
+
+
+Lnovo$ sudo salt-key -A
+The following keys are going to be accepted:
+Unaccepted Keys:
+w10
+Proceed? [n/Y] y
+Key for minion w10 accepted.
+```
+
+
 
 
 ## Tehtäväksianto b)
 
-b) Säädä Windowsia Saltilla ilman herra-orja rakennetta (salt-call –local). **Lähde:** [terokarvinen.com](http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p)
+b) Säädä Windowsia Saltilla ilman herra-orja rakennetta (salt-call --local). **Lähde:** [terokarvinen.com](http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p)
 
 
 
