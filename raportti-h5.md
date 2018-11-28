@@ -1,6 +1,6 @@
 # Raportti h5
 
-Copyright 2018 Juha-Pekka Pulkkinen https://github.com/a1704565 GNU General Public License v3.0
+Copyright 2018 Juha-Pekka Pulkkinen [https://github.com/a1704565](https://github.com/a1704565) GNU General Public License v3.0
 
 **Raportoitavissa tehtävissä käytettyjen tietokoneiden tiedot:**
 
@@ -19,7 +19,7 @@ _Koneen tiedot:_
 
 **Minion:**
 
-Pöytäkone joka on koottu komponenteista, eli ei ole mikään merkkikone. Kyseisellä koneella on kesken monta muuta projektia, joten päädyin käyttämään kyseisellä koneella virtualboxissa toimivaa tuoretta Windows 10 asennusta toistaiseksi kunnes saan muut projektit hoidettua alta pois.
+Pöytäkone on koottu komponenteista, eli se ei ole mikään merkkikone. Kyseisellä koneella on kesken monta muuta projektia, joten päädyin käyttämään kyseisellä koneella vivirtuaalista Windows 10 asennusta toistaiseksi, kunnes saan muut projektit hoidettua alta pois.
 
 _Fyysisen koneen tiedot:_
 
@@ -38,6 +38,10 @@ _Virtuaalikoneen tiedot:_
 * Videomuistia: 256MB, 2D ja 3D kiihdytys kytketty päälle
 * Käyttöjärjestelmä: Windows 10 Home (versio 1809)
 * Lyvytila: dynaaminen virtuaalikovalevy (formaatti=VDI) 50GB (sallittu virtuaalikoneen nähdä levy SSD:nä)
+* Verkkoadapteri: Siltaavassa tilassa (bridged)
+
+
+Raportoinnissa viittaukset Lenovoon = Master ja viittaukset W10 = minion.
 
 
 
@@ -51,6 +55,62 @@ Tehtävien työstäminen aloitettu 28.11.2018 klo. 16:50.
 ## Tehtäväksianto a)
 
 a) Säädä Windowsia Saltilla siten, että Windows on orja ja Linux on herra. **Lähde:** [terokarvinen.com](http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p)
+
+Selvitetty aluksi mikä versio Saltista on käytössä Master koneella (Lenovo)
+
+```Shell
+
+Lenovo$ salt --version
+salt 2017.7.4 (Nitrogen)
+
+```
+Versio on 2017.7.4, joten seuraava vaihe on asentaa sama versio Windows 10 virtuaalikoneelle. Winsows repository löytyy kätevästi osoitteesta [https://repo.saltstack.com/windows/](https://repo.saltstack.com/windows/). Parhaiten yhteensopiva versio tässä tapauksessa on _Salt-Minion-2017.7.4-Py3-AMD64-Setup.exe_.
+
+Kuvankaappaus vaihtoehdoista:
+
+![salt repo for windows](img/w10minion/repo-1.png)
+
+Tiedoston lataamisen jälkeen prosessi eteni seuraavasti w10 koneella:
+
+![Salt installation screenshot 1](img/w10minion/ws01.png)
+
+Avataan/suoritetaan ladattu tiedosto.
+
+![Salt installation screenshot 2](img/w10minion/ws02.png)
+
+Mikäli Windows 10 antaa User Access Control (UAC) varoituksen ja tarjoaa no vaihtoehtoa, mutta oikea vaihtoehto on yes.
+
+![Salt installation screenshot 3](img/w10minion/ws03.png)
+
+Asennusohjelma kertoo mitä olet asentamassa, valitaan next.
+
+![Salt installation screenshot 4](img/w10minion/ws04.png)
+
+Seuraavaksi esitetään lisenssisopimus, joka tulee hyväksyä ennen varsinaista asennusta.
+
+![Salt installation screenshot 5](img/w10minion/ws05.png)
+
+Oletuksena asennusohjelma kysyy Masterin IP-osoitetta tai Hostnamea.
+
+Tässä vaiheessa tarkistettu, masterin IP-soite:
+
+```Shell
+Lenovo$ hostname -I
+192.168.0.131 
+
+```
+
+![Salt installation screenshot 6](img/w10minion/ws06.png)
+
+Syötetty tässä vaiheessa oikeat tiedot kenttiin.
+
+![Salt installation screenshot 7](img/w10minion/ws07.png)
+
+Asennusohjelma saattaa ilmoittaa tarvittavasta VC_Redist_2015 paketista ja sen asennus tulee hyväksyä tässä vaiheesas, jotta salt toimisi oikein.
+
+![Salt installation screenshot 8](img/w10minion/ws08.png)
+
+Asennusprosessin lopuksi pitää varmistaa, että rasti on ruudussa _Start salt-minion_, jonka jälkeen asennusohjel voidaan sulkea.
 
 
 
