@@ -220,3 +220,4 @@ e) Vapaaehtoinen: tee omaan käytössä olevaan (Windows, jos käytät Windowsia
 # Lähdeluettelo
 
 1. http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p
+2. http://terokarvinen.com/2018/control-windows-with-salt
