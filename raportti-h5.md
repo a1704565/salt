@@ -4,7 +4,7 @@ Copyright 2018 Juha-Pekka Pulkkinen https://github.com/a1704565 GNU General Publ
 
 **Tehtävissä käytettyjen tietokoneiden tiedot:**
 
-**Mster:**
+**Master:**
 
 Lenovon kannettava tietokone, jota on käytetty aikaisemmissakin tehtävissä.
 
@@ -37,7 +37,7 @@ _Virtuaalikoneen tiedot:_
 * RAM: 8GB
 * Videomuistia: 256MB, 2D ja 3D kiihdytys kytketty päälle
 * Käyttöjärjestelmä: Windows 10 Home
-* Lyvytila: dynaaminen virtuaalikovalevy (formaatti: VDI) 50GB (sallittu virtuaalikoneen nähdä levy SSD:nä)
+* Lyvytila: dynaaminen virtuaalikovalevy (formaatti=VDI) 50GB (sallittu virtuaalikoneen nähdä levy SSD:nä)
 
 
 
@@ -50,7 +50,35 @@ Tehtävien työstäminen aloitettu 28.11.2018 klo. 16:50.
 
 ## Tehtäväksianto a)
 
+a) Säädä Windowsia Saltilla siten, että Windows on orja ja Linux on herra. **Lähde:** [terokarvinen.com](http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p)
 
+
+
+
+## Tehtäväksianto b)
+
+b) Säädä Windowsia Saltilla ilman herra-orja rakennetta (salt-call –local). **Lähde:** [terokarvinen.com](http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p)
+
+
+
+
+## Tehtäväksianto c)
+
+c) Muuta jonkin Windows-ohjelman asetuksia Saltilla. Monia ohjelmia voi säätää laittamalla asetustiedoston paikalleen, aivan kuten Linuxissa. **Lähde:** [terokarvinen.com](http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p)
+
+
+
+
+## Tehtäväksianto d)
+
+d) Valitse aihe omaksi kurssityöksi ja varaa se kommenttina aikataulusivun perään. **Lähde:** [terokarvinen.com](http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p)
+
+
+
+
+## Tehtäväksianto e)
+
+e) Vapaaehtoinen: tee omaan käytössä olevaan (Windows, jos käytät Windowsia) koneeseesi Saltilla jokin säätö, josta on sinulle hyötyä jokapäiväisessä elämässä. **Lähde:** [terokarvinen.com](http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p)
 
 
 
