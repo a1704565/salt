@@ -132,6 +132,30 @@ Proceed? [n/Y] y
 Key for minion w10 accepted.
 ```
 
+Testaus:
+```Shell
+Lenovo$ sudo salt '*' test.ping
+w10:
+    True
+
+Lenovo$ sudo sudo salt '*' cmd.run 'ipconfig'
+w10:
+    
+    Windows IP Configuration
+    
+    
+    Ethernet adapter Ethernet:
+    
+       Connection-specific DNS Suffix  . : 
+       Link-local IPv6 Address . . . . . : fe80::a0b9:xxx:xxxx:xxxxxx
+       IPv4 Address. . . . . . . . . . . : 192.168.0.109
+       Subnet Mask . . . . . . . . . . . : 255.255.255.0
+       Default Gateway . . . . . . . . . : 192.168.0.1
+```
+
+Testaustatut komennot näyttävät toimivan ja palauttaa w10 minionilta vastauksia, kuten pitääkin.
+
+
 
 
 
