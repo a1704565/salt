@@ -41,7 +41,8 @@ _Virtuaalikoneen tiedot:_
 * Verkkoadapteri: Siltaavassa tilassa (bridged)
 
 
-Raportoinnissa viittaukset Lenovoon = Master ja viittaukset W10 = minion.
+Lenovo = Master
+w10 = Minion
 
 
 
@@ -49,8 +50,6 @@ Raportoinnissa viittaukset Lenovoon = Master ja viittaukset W10 = minion.
 
 Tehtäväksianto löytyy kohdassa h5 tästä linkistä; [terokarvinen.com](http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p) (tarkistettu viimeksi 28.11.2018)
 
-
-Tehtävien työstäminen aloitettu 28.11.2018 klo. 16:50.
 
 ## Tehtäväksianto a)
 
@@ -261,20 +260,19 @@ sudo apt-get install vlc
 ```
 VLC:n asetukset löytyvät linuxilla tiedostosta joka sijaitsee polussa /home/user/.config/vlc/vlcrc, kun taas windowssilla sen polku on %appdata%/vlc/vlcrc.
 
+Tein VLC:n asetuksiin muutoksia ja kopioin tuon muunnellun vlcrc-tiedoston polkuun /srv/salt/vlc/vlcrc, jonka jälkeen lähdin kokoamaan .sls tiedostoa.
 
+**ongelma**
+
+Törmäsin ongelmaan, joita en ollut tiedostanut aikaisemmin.
+* Saltin file.managed ei tue relatiivisia polkuja ainakaan versiossa, joka minulla on käytössä
+
+Valitettavasti ongelmaa pohtiessa aikani loppui kesken, enkä saanut tyydyttävää vastausta tähän asiaan.
 
 
 ## Tehtäväksianto d)
 
 d) Valitse aihe omaksi kurssityöksi ja varaa se kommenttina aikataulusivun perään. **Lähde:** [terokarvinen.com](http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p)
-
-
-
-
-## Tehtäväksianto e)
-
-e) Vapaaehtoinen: tee omaan käytössä olevaan (Windows, jos käytät Windowsia) koneeseesi Saltilla jokin säätö, josta on sinulle hyötyä jokapäiväisessä elämässä. **Lähde:** [terokarvinen.com](http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p)
-
 
 
 
