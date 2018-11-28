@@ -191,6 +191,10 @@ En tiedä mistä syystä tuo "minion did not return" ilmoitus johtuu, mutta kaik
 
 b) Säädä Windowsia Saltilla ilman herra-orja rakennetta (salt-call --local). **Lähde:** [terokarvinen.com](http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p)
 
+
+Sovelsin tässä tehtävässä ohjeistusta jonka löysin Tero Karvisen artikkelista; [Control Windows with Salt](http://terokarvinen.com/2018/control-windows-with-salt)
+
+
 ```PowerShell
 Windows PowerShell
 Copyright (C) Microsoft Corporation. All rights reserved.
@@ -235,6 +239,9 @@ local:
 PS C:\salt>
 ```
 
+Ilmeiesti myös edellisen tehtävän ongelmat voivat johtua vanhentuneesta Salt-versiosta ja/tai Windowssin tuoreimmista päivityksistä. Yritin myös asentaa firefoxia ja geditiä tällä -- local komennoilla, mutta sama virhe tulee kaikissa, silti asennus onnistuu joka kerta.
+
+---
 
 ## Tehtäväksianto c)
 
