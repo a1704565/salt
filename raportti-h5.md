@@ -239,7 +239,7 @@ local:
 PS C:\salt>
 ```
 
-Ilmeiesti myös edellisen tehtävän ongelmat voivat johtua vanhentuneesta Salt-versiosta ja/tai Windowssin tuoreimmista päivityksistä. Yritin myös asentaa firefoxia ja geditiä tällä -- local komennoilla, mutta sama virhe tulee kaikissa, silti asennus onnistuu joka kerta.
+Ilmeiesti myös edellisen tehtävän ongelmat voivat johtua vanhentuneesta Salt-versiosta ja/tai Windowssin tuoreimmista päivityksistä. Yritin myös asentaa firefoxia ja geditiä --local komennoilla, mutta sama virhe tulee kaikissa, silti asennus onnistuu joka kerta.
 
 Kuvankaappaus lopputilanteesta:
 
@@ -250,6 +250,16 @@ Kuvankaappaus lopputilanteesta:
 ## Tehtäväksianto c)
 
 c) Muuta jonkin Windows-ohjelman asetuksia Saltilla. Monia ohjelmia voi säätää laittamalla asetustiedoston paikalleen, aivan kuten Linuxissa. **Lähde:** [terokarvinen.com](http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p)
+
+Koska molemmille käyttöjärjestelmille on saatavana VLC, vieläpä sama versio 3.0.4, päätin muuttaa Xubuntulla olevan VLC:n säätöjä ja tehdä sen pohjalta salt ratkaisun, jolloin säädöt saadaan toistettua windows koneella.
+
+**Asennus**
+
+```Shell
+sudo apt-get update
+sudo apt-get install vlc
+```
+VLC:n asetukset löytyvät linuxilla tiedostosta joka sijaitsee polussa /home/user/.config/vlc/vlcrc, kun taas windowssilla sen polku on %appdata%/vlc/vlcrc.
 
 
 
