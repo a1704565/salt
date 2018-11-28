@@ -133,7 +133,6 @@ Key for minion w10 accepted.
 ```
 
 
-
 **Testaus:**
 
 ```Shell
@@ -158,6 +157,34 @@ w10:
 
 Testaustatut komennot näyttävät toimivan ja palauttaa w10 minionilta vastauksia, kuten pitääkin.
 
+
+**Ohjelmien asentaminen**
+
+Seuraava vaihe pohjautuu Tero Karvisen artikkeliin [Control Windows with Salt](http://terokarvinen.com/2018/control-windows-with-salt)
+
+Master koneella tehtävät toimenpiteet:
+
+```Shell
+Lenovo$ sudo mkdir /srv/salt/win
+Lenovo$ sudo chown root.salt /srv/salt/win
+Lenovo$ sudo chmod ug+rwx /srv/salt/win
+Lenovo$ sudo salt-run winrepo.update_git_repos
+Lenovo$ sudo salt -G 'os:windows' pkg.refresh_db
+w10:
+    Minion did not return. [No response]
+Lenovo$ sudo salt '*' pkg.install vlc
+w10:
+    Minion did not return. [No response]
+Lenovo$ sudo salt '*' pkg.install firefox
+w10:
+    Minion did not return. [No response]
+```
+
+En tiedä mistä syystä tuo "minion did not return" ilmoitus johtuu, mutta kaikki ohjelmat asentuvat silti virtuaalikoneelle ilman ongelmia. Epäilen että tässä saattaa olla syynä se, että käytän virtuaalikonetta.
+
+![Salt installation screenshot 9](img/w10minion/ws09.png)
+
+Syötetty tässä vaiheessa oikeat tiedot kenttiin.
 
 
 
