@@ -3938,7 +3938,7 @@ qt-privacy-ask=0
 #packetizer=
 
 # VoD server module (string)
-#vod-server=
+vod-server=any
 
 # Use a plugins cache (boolean)
 #plugins-cache=1
