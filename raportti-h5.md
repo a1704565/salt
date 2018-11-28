@@ -2,7 +2,7 @@
 
 Copyright 2018 Juha-Pekka Pulkkinen https://github.com/a1704565 GNU General Public License v3.0
 
-**Tehtävissä käytettyjen tietokoneiden tiedot:**
+**Raportoitavissa tehtävissä käytettyjen tietokoneiden tiedot:**
 
 **Master:**
 
@@ -27,7 +27,7 @@ _Fyysisen koneen tiedot:_
 * Emolevy: Asus Z97M-PLUS, LGA 1150 (BIOS date 02/22/2016)
 * RAM: 16GB, 1600MHz (timing 10-10-10-27) DDR3
 * GPU: Asus nVidia GeForce GTX 1060 6GB
-* Käyttöjärjestelmä: Windows 10 Pro
+* Käyttöjärjestelmä: Windows 10 Pro (versio 1803)
 * Lyvytila: 500GB SSD
 
 _Virtuaalikoneen tiedot:_
@@ -36,14 +36,14 @@ _Virtuaalikoneen tiedot:_
 * CPU: Intel Core i5-4460 @ 2x 3.2GHz - PAE/NX kytketty päälle, sekä VT-x/AMD-V + Nested Paging
 * RAM: 8GB
 * Videomuistia: 256MB, 2D ja 3D kiihdytys kytketty päälle
-* Käyttöjärjestelmä: Windows 10 Home
+* Käyttöjärjestelmä: Windows 10 Home (versio 1809)
 * Lyvytila: dynaaminen virtuaalikovalevy (formaatti=VDI) 50GB (sallittu virtuaalikoneen nähdä levy SSD:nä)
 
 
 
 **Huom!**
 
-Tehtäväksianto löytyy kohdassa h4 tästä linkistä; [terokarvinen.com](http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p) (tarkistettu viimeksi 28.11.2018)
+Tehtäväksianto löytyy kohdassa h5 tästä linkistä; [terokarvinen.com](http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p) (tarkistettu viimeksi 28.11.2018)
 
 
 Tehtävien työstäminen aloitettu 28.11.2018 klo. 16:50.
