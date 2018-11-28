@@ -184,8 +184,6 @@ En tiedä mistä syystä tuo "minion did not return" ilmoitus johtuu, mutta kaik
 
 ![Salt installation screenshot 9](img/w10minion/ws09.png)
 
-Syötetty tässä vaiheessa oikeat tiedot kenttiin.
-
 
 
 
