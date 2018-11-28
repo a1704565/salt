@@ -191,7 +191,49 @@ En tiedä mistä syystä tuo "minion did not return" ilmoitus johtuu, mutta kaik
 
 b) Säädä Windowsia Saltilla ilman herra-orja rakennetta (salt-call --local). **Lähde:** [terokarvinen.com](http://terokarvinen.com/2018/aikataulu-%e2%80%93-palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to-%e2%80%93-loppukevat-2018-5p)
 
+```PowerShell
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
 
+PS C:\Windows\system32> cd..
+PS C:\Windows> cd..
+PS C:\> cd .\salt\
+PS C:\salt> dir
+
+
+    Directory: C:\salt
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-----       11/28/2018   6:59 PM                bin
+d-----       11/28/2018   7:00 PM                conf
+d-----       11/28/2018   6:59 PM                var
+-a----         1/4/2018   7:40 PM         294912 nssm.exe
+-a----         1/4/2018   7:40 PM            308 salt-call.bat
+-a----         1/4/2018   7:40 PM            306 salt-cp.bat
+-a----         1/4/2018   7:40 PM            373 salt-minion-debug.bat
+-a----         1/4/2018   7:40 PM             57 salt-minion-start-service.bat
+-a----         1/4/2018   7:40 PM            310 salt-minion.bat
+-a----         1/4/2018   7:40 PM         143185 salt.ico
+-a----       11/28/2018   6:59 PM         192213 uninst.exe
+
+
+PS C:\salt> .\salt-call.bat --local test.ping
+local:
+    True
+PS C:\salt> .\salt-call.bat --local pkg.install git
+[WARNING ] C:\salt\bin\lib\site-packages\salt\modules\win_update.py:91: DeprecationWarning: The 'win_update' module is being deprecated and will be removed in Salt Fluorine (Unreleased). Please use the 'win_wua' module instead.
+
+local:
+    ----------
+    git:
+        ----------
+        new:
+            2.19.1
+        old:
+PS C:\salt>
+```
 
 
 ## Tehtäväksianto c)
