@@ -33,5 +33,9 @@ mariadb_service:
     - watch:
       - file: /etc/mysql/mariadb.cnf
 
+mariadb-client:
+  pkg.installed
+
+
 php:
   pkg.installed
