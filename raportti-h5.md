@@ -42,6 +42,7 @@ _Virtuaalikoneen tiedot:_
 
 
 Lenovo = Master
+
 w10 = Minion
 
 
