@@ -149,3 +149,60 @@ asd
 Tässä vaiheessa kaikki hyvin ja homma toimii.
 
 _tehtävän tekeminen lopetettu: klo 7:56 4.12.2018_
+
+---
+
+_Edeltävän parantelu aloitettu klo. 17:43 4.12.2018_
+
+
+**Mietteet:**
+
+Edeltävän tilan toiminnallisuutta voisi parantaa entisestään, lisäämällä Mariadb:hen tietokannan ja käyttäjän ihan testimielessä, vaikka tehtäväksiannossa tätä kohtaa ei mainitakaan suoranaisesti.
+
+Salt-tilan ajamisen jälkeen ajettu manuaalisesti nämä komennot minionilla:
+
+```Shell
+labrabuntu$ sudo mariadb -u root
+MariaDB [(none)]> CREATE DATABASE minion;
+Query OK, 1 row affected (0.00 sec)
+MariaDB [(none)]> GRANT ALL ON minion.* TO minionuser@localhost IDENTIFIED BY 'jotjH_goeYER-83jtej2-insert-better-password';
+Query OK, 0 rows affected (0.00 sec)
+```
+Selite:
+
+- kirjaututaan sisään mariadb:hen
+- lisätään tietokanta nimeltä minion
+- lisätään luotuun tietokantaan kaikki oikeudet käyttäjälle minionuser (komento samalla luo tämän käyttäjän), käyttäjä tunnistautuu turvallisella salasanalla (tässä se on vain esimerkki)
+
+Manuaalisesti ajetun tilanteen tarkastus:
+
+```Shell
+MariaDB [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| minion             |
+| mysql              |
+| performance_schema |
++--------------------+
+4 rows in set (0.00 sec)
+
+MariaDB [(none)]> SHOW GRANTS FOR minionuser@localhost;
++-------------------------------------------------------------------------------------------------------------------+
+| Grants for minionuser@localhost                                                                                   |
++-------------------------------------------------------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'minionuser'@'localhost' IDENTIFIED BY PASSWORD '*B249F4C28C9DE0CAA7053861C552140668DF9C9C' |
+| GRANT ALL PRIVILEGES ON `minion`.* TO 'minionuser'@'localhost'                                                    |
++-------------------------------------------------------------------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+MariaDB [(none)]> EXIT;
+Bye
+```
+Selite:
+
+- Tarkastettu tietokannat. Minion näkyy listalla, joten kaikki ok
+- Tarkastettu oikeudet, komento näyttää myös samalla käyttäjän, joten kaikki myös ok
+- Poistuttu mariadb:stä exit komennolla
+
