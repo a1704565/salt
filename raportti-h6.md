@@ -50,7 +50,7 @@ Tehtävän tekeminen aloitettu: _klo. 6:38 4.12.2018_
 
 Labrabuntu kone on määritetty tässä vaiheessa minioniksi koneelle Lenovo.
 
-Minulla oli jo omassa gituhubissa jossain vaiheessa testailuun luomani salt tila [lamp.sls](https://github.com/a1704565/salt/blob/master/lamp-old.sls), jota muokkaamalla lähdin toetuttamaan tehtävää. Uusin versio löytyy [täältä](https://github.com/a1704565/salt/blob/master/lamp.sls).
+Minulla oli jo omassa gituhubissa jossain vaiheessa testailuun luomani salt-tila [lamp.sls](https://github.com/a1704565/salt/blob/master/lamp-old.sls), jota muokkaamalla lähdin toetuttamaan tehtävää. Uusin versio löytyy [täältä](https://github.com/a1704565/salt/blob/master/lamp.sls).
 
 **Muokattu lamp.sls:**
 
