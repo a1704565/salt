@@ -146,7 +146,7 @@ asd
 Curl-testi minionin IP-osoite/käyttäjä/index.html
 
 ```Shell
-Lenovo$ curl 192.168.0.101/~xubuntu/index.html
+Lenovo$ curl 192.168.0.101/~user/index.html
 asd
 ```
 
