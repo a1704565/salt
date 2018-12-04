@@ -21,7 +21,7 @@ _Koneen tiedot:_
 
 Itse kasattu pöytäkone, jossa asennettuna Windows 10 Pro, mutta nyt bootattu live-tikulla, jossa Xubuntu 18.04.01 LTS.
 
-_Koneen tieddot:_
+_Koneen tiedot:_
 
 * CPU: Intel Core i5-4460 @ 4x 3.2GHz
 * Emolevy: Asus Z97M-PLUS, LGA 1150 (BIOS date 02/22/2016)
@@ -415,3 +415,11 @@ Total run time: 542.822 ms
 Tulos näyttäisi olevan odotetun mukainen, ja kaikki toimii kuten pitääkin, sillä database kohta ilmoittaa _"Comment: All files in creates exist"_
 
 _parantelu lopetettu klo. 20:48_
+
+---
+
+# Lähdeluettelo
+
+1. http://terokarvinen.com/2018/aikataulu--palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to--loppukevat-2018-5p
+2. https://docs.saltstack.com/en/latest/ref/states/all/salt.states.cmd.html
+3. https://github.com/a1704565/salt/blob/master/lamp-old.sls
