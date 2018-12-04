@@ -31,6 +31,7 @@ _Koneen tieddot:_
 * Lyvytila: 500GB SSD
 
 Master = Lenovo
+
 Minion = labrabuntu
 
 ---
@@ -55,7 +56,6 @@ Minulla oli jo omassa gituhubissa jossain vaiheessa testailuun luomani salt-tila
 **Muokattu lamp.sls:**
 
 ```SlatStack
-
 apache2:
   pkg.installed
 
@@ -86,7 +86,6 @@ mariadb:
 
 php:
   pkg.installed
-
 ```
 
 **Selitteet:**
@@ -98,7 +97,7 @@ php:
 - asennetaan mariadb client ja server
 - asennetaan php
 
-Testaus:
+**Testaus:**
 
 Ajettu ensin lamp.sls salt-tila.
 
