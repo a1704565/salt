@@ -150,6 +150,4 @@ Lenovo$ curl 192.168.0.101/~user/index.html
 asd
 ```
 
-**Mietteet:**
-
-Tässä vaiheessa kaikki hyvin ja homma toimii, mutta mariadb:n asetukset voisi hoitaa vielä kuntoon, vaikka tehtäväksiannossa tätä kohtaa ei mainitakaan, mutta 
+Tässä vaiheessa kaikki hyvin ja homma toimii.
