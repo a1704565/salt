@@ -92,10 +92,10 @@ php:
 
 - Asennetaan apache2
 - Haetaan Masterin salt kansiosta index.html sisältö ja viedään se Minionin polkuun /var/www/html/index.html
-- Otetaan käyttöön userdir ominaisuus apachessa, luomalla symbooliset linkit tarpeellisiin kansioihin
-- käynnistetään uudestaan apachen palvelu, mikäli valvottavat kohteet userdit.conf tai userdi.load ovat muuttuneet
-- asennetaan mariadb client ja server
-- asennetaan php
+- Otetaan käyttöön userdir ominaisuus apachessa, luomalla symboliset linkit oikeisiin kansioihin
+- Käynnistetään uudestaan apachen palvelu, mikäli valvottavat kohteet userdit.conf tai userdi.load ovat muuttuneet
+- Asennetaan mariadb server ja client
+- Asennetaan php
 
 **Testaus:**
 
@@ -157,9 +157,9 @@ _Edeltävän parantelu aloitettu klo. 17:43 4.12.2018_
 
 **Mietteet:**
 
-Edeltävän tilan toiminnallisuutta voisi parantaa entisestään, lisäämällä Mariadb:hen tietokannan ja käyttäjän ihan testimielessä, vaikka tehtäväksiannossa tätä kohtaa ei mainitakaan suoranaisesti.
+Edeltävän tilan toiminnallisuutta voisi parantaa entisestään, lisäämällä Mariadb:hen tietokannan ja käyttäjän testausta varten, vaikka tehtäväksiannossa tätä kohtaa ei mainitakaan suoranaisesti.
 
-**huom!** Tämä ei välttämättä ole turvallista toteuttaa näin oikeassa 
+**huom!** Tämä ei välttämättä ole turvallista toteuttaa näin oikeassa tuotantoympäristössä.
 
 Salt-tilan ajamisen jälkeen ajettu manuaalisesti nämä komennot minionilla:
 
@@ -172,9 +172,9 @@ Query OK, 0 rows affected (0.00 sec)
 ```
 Selite:
 
-- kirjaututaan sisään mariadb:hen
-- lisätään tietokanta nimeltä minion
-- lisätään luotuun tietokantaan kaikki oikeudet käyttäjälle minionuser (samalla komento luo tämän käyttäjän), käyttäjä tunnistautuu salasanalla (tässä se on vain esimerkki)
+- Kirjaututaan sisään mariadb:hen
+- Lisätään tietokanta nimeltä minion
+- Lisätään luotuun tietokantaan kaikki oikeudet käyttäjälle `minionuser` (samalla komento luo tämän käyttäjän), käyttäjä tunnistautuu salasanalla (tässä se on vain esimerkki)
 
 **Manuaalisesti ajetun tilanteen tarkastus:**
 
@@ -218,7 +218,7 @@ Poistettu tässä vaiheessa mariadb client ja server, sekä luodut teitokannat y
 
 **Automaation luominen:**
 
-Loin ensin ShellScriptin (database.sh), joka tekee tarvittavat toimenpiteet, jonka jälkeen otin selvää saltin [manuaalista](https://docs.saltstack.com/en/latest/ref/states/all/salt.states.cmd.html), kuinka voin juoksuttaa sen vain kerran, ettei operaatiota toisteta turhaan useasti, jos tietokanta ja käyttäjä on jo kerran luotu. Tähän löytyi monta eri tatkaisua ja päädyin niistä itselle helpoimpaan vaihtoehtoon (selostus alempana).
+Loin ensin Shell-skriptin (database.sh), joka tekee tarvittavat toimenpiteet. Tämän jälkeen otin selvää saltin [ohjeista](https://docs.saltstack.com/en/latest/ref/states/all/salt.states.cmd.html), kuinka voin juoksuttaa skriptin vain kerran, ettei operaatiota toisteta turhaan useaan kertaan, jos tietokanta ja käyttäjä on jo kerran luotu. Tähän löytyi monta eri tatkaisua ja päädyin niistä itselle helpoimpaan vaihtoehtoon (selostus alempana).
 
 ```Shell
 #!/bin/bash
@@ -228,13 +228,13 @@ echo "database for testing purposes has been created" | sudo tee /etc/mysql/done
 ```
 **Vaiheet:**
 
-- ensin luodaan echoa käyttäen mariadb:hen database nimeltä minion
-- seuraavaksi luodaan käyttäjä, jolla on oikeudet tietokantaan ja tunnistautuminen käy salasanalla
-- viimeisenä luodaan done.log teidosto, jota käytetään myöhemmässä vaiheessa hyödyksi tunnistamaan, onko komennot jo ajettu vai ei
+- Ensin luodaan echoa käyttäen mariadb:hen database nimeltä minion
+- Seuraavaksi luodaan käyttäjä, jolla on oikeudet tietokantaan ja tunnistautuminen käy salasanalla
+- Viimeisenä luodaan done.log teidosto, jota käytetään myöhemmässä vaiheessa hyödyksi tunnistamaan, onko komennot jo ajettu vai ei
 
-Kyseinen database.sh on tallennettu polkuun `/srv/salt/www` ja sen omistajuus on muutettu saltille `sudo chown salt database.sh`, sen oikeudet on myös muutettu `sudo chmod 400 database.sh`. Tämä tarkoittaa, että vain omistajalla eli saltilla on lukuoikeus tiedostoon ja muilla ei ole oikeuksia tiedostoon.
+Kyseinen database.sh on tallennettu polkuun `/srv/salt/www/database.sh` ja sen omistajuus on muutettu saltille `sudo chown salt database.sh`, sen oikeudet on myös muutettu `sudo chmod 400 database.sh`. Tämä tarkoittaa, että vain omistajalla eli saltilla on lukuoikeus tiedostoon ja muilla ei ole oikeuksia tiedostoon. Tämä edeltävä vaihe ei vaikuta tässä tapauksessa hirveästi lopputulokseen, sillä "suojatut" tiedot ovat myös githubissa saatavilla.
 
-Muutosten testaus:
+**Muutosten testaus:**
 
 ```Shell
 Lenovo$ ls -l /srv/salt/www/database.sh 
@@ -413,6 +413,40 @@ Total run time: 542.822 ms
 ```
 
 Tulos näyttäisi olevan odotetun mukainen, ja kaikki toimii kuten pitääkin, sillä database kohta ilmoittaa _"Comment: All files in creates exist"_
+
+**Automatisoidusti luodun tietokannan testaaminen:**
+
+```Shell
+labrabuntu$ sudo mariadb -u root
+
+MariaDB [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| minion             |
+| mysql              |
+| performance_schema |
++--------------------+
+4 rows in set (0.00 sec)
+
+MariaDB [(none)]> SHOW GRANTS FOR minionuser@localhost;
++-------------------------------------------------------------------------------------------------------------------+
+| Grants for minionuser@localhost                                                                                   |
++-------------------------------------------------------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'minionuser'@'localhost' IDENTIFIED BY PASSWORD '*B249F4C28C9DE0CAA7053861C552140668DF9C9C' |
+| GRANT ALL PRIVILEGES ON `minion`.* TO 'minionuser'@'localhost'                                                    |
++-------------------------------------------------------------------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+MariaDB [(none)]> EXIT;
+Bye
+```
+Tämän testaamisen perusteella kaikki tahdotut ominaisuudet toimivat tässä vaiheessa.
+
+**Mietteitä**
+
+Tällä tavalla periaatteessa voisi saada toteutettua kaikki sertifikaatti asiat palvelimelle yms. muuta säädöt kuntoon kulloinkin halutulla tavalla. Tehtäväksiannon puitteissa en kuitenkaan nää syytä toteuttaa sitä tämän raportoinnin puitteissa, sillä aikaa käytettäväksi on rajallisesti.
 
 _parantelu lopetettu klo. 20:48_
 
