@@ -40,7 +40,7 @@ Tehtäväksianto löytyy kohdassa h6 tästä linkistä; [terokarvinen.com](http:
 
 ---
 
-##Tehtäväksianto
+## Tehtäväksianto
 
 Asenna LAMP Saltilla.
 
@@ -51,9 +51,9 @@ Tehtävän tekeminen aloitettu: _klo. 6:38 4.12.2018_
 
 Labrabuntu kone on määritetty tässä vaiheessa minioniksi koneelle Lenovo.
 
-Minulla oli jo omassa gituhubissa jossain vaiheessa tuntien aikana testailuun luomani salt tila lamp.sls, jota muokkaamalla lähdin toetuttamaan tehtävää.
+Minulla oli jo omassa gituhubissa jossain vaiheessa testailuun luomani salt tila [lamp.sls](https://github.com/a1704565/salt/blob/master/lamp-old.sls), jota muokkaamalla lähdin toetuttamaan tehtävää.
 
-**Tilanne ennen muokkauksia:**
+**Muokattu lamp.sls:**
 
 ```SlatStack
 
@@ -85,7 +85,7 @@ mariadb:
   pkg.installed:
     - pkgs:
       - mariadb-server
-      - mariadb-client 
+      - mariadb-client
 
 php:
   pkg.installed
@@ -132,3 +132,24 @@ Lenovo$ curl 192.168.0.101
 </body>
 </html>
 ```
+
+Viimeisenä testattu userdir toimivuus minionilla, luomalla ensin sisältö tätä tarkoitusta varten.
+
+```Shell
+labrabuntu$ mkdir public_html
+labrabuntu$ cd public_html
+labrabuntu$ echo asd > index.html
+labrabuntu$ cat index.html
+asd
+```
+
+Curl-testi minionin IP-osoite/käyttäjä/index.html
+
+```Shell
+Lenovo$ curl 192.168.0.101/~xubuntu/index.html
+asd
+```
+
+**Mietteet:**
+
+Tässä vaiheessa kaikki hyvin ja homma toimii, mutta mariadb:n asetukset voisi hoitaa vielä kuntoon, vaikka tehtäväksiannossa tätä kohtaa ei mainitakaan, mutta 
