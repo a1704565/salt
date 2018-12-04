@@ -35,4 +35,100 @@ Minion = labrabuntu
 
 ---
 
+Tehtäväksianto löytyy kohdassa h6 tästä linkistä; [terokarvinen.com](http://terokarvinen.com/2018/aikataulu--palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to--loppukevat-2018-5p) (tarkistettu viimeksi 4.12.2018)
 
+
+---
+
+##Tehtäväksianto
+
+Asenna LAMP Saltilla.
+
+
+**Taustatiedot**
+
+Tehtävän tekeminen aloitettu: _klo. 6:38 4.12.2018_
+
+Labrabuntu kone on määritetty tässä vaiheessa minioniksi koneelle Lenovo.
+
+Minulla oli jo omassa gituhubissa jossain vaiheessa tuntien aikana testailuun luomani salt tila lamp.sls, jota muokkaamalla lähdin toetuttamaan tehtävää.
+
+**Tilanne ennen muokkauksia:**
+
+```SlatStack
+
+#Copyright 2018 Juha-Pekka Pulkkinen https://github.com/a1704565 GNU General Public License v3.0
+
+apache2:
+  pkg.installed
+
+/var/www/html/index.html:
+  file.managed:
+    - source: salt://www/index.html
+
+/etc/apache2/mods-enabled/userdir.conf:
+  file.symlink:
+    - target: ../mods-available/userdir.conf
+
+/etc/apache2/mods-enabled/userdir.load:
+  file.symlink:
+    - target: ../mods-available/userdir.load
+
+apache2service:
+  service.running:
+    - name: apache2
+    - watch:
+      - file: /etc/apache2/mods-enabled/userdir.conf
+      - file: /etc/apache2/mods-enabled/userdir.load
+
+mariadb:
+  pkg.installed:
+    - pkgs:
+      - mariadb-server
+      - mariadb-client 
+
+php:
+  pkg.installed
+
+```
+
+**Selitteet:**
+
+- Asennetaan apache2
+- Haetaan Masterin salt kansiosta index.html sisältö ja viedään se Minionin polkuun /var/www/html/index.html
+- Otetaan käyttöön userdir ominaisuus apachessa, luomalla symbooliset linkit tarpeellisiin kansioihin
+- käynnistetään uudestaan apachen palvelu, mikäli valvottavat kohteet userdit.conf tai userdi.load ovat muuttuneet
+- asennetaan mariadb client ja server
+- asennetaan php
+
+Testaus:
+
+Ajettu ensin lamp.sls salt-tila.
+
+```Shell
+Lenovo$ sudo salt '*' state.apply lamp
+
+Summary for labrabuntu
+------------
+Succeeded: 7 (changed=7)
+Failed:    0
+------------
+Total states run:     7
+Total run time:  56.154 s
+```
+
+Testattu curlilla, että minionin IP-osoitteessa sivusto (index.html) toimii ja asetukset ovat siis vaihtuneet.
+
+```Shell
+Lenovo$ curl 192.168.0.101
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Salt minion test</h1>
+
+<p>test!</p>
+
+</body>
+</html>
+```
