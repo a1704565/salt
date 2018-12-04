@@ -446,7 +446,7 @@ Tämän testaamisen perusteella kaikki tahdotut ominaisuudet toimivat tässä va
 
 **Mietteitä**
 
-Tällä tavalla periaatteessa voisi saada toteutettua kaikki sertifikaatti asiat palvelimelle yms. muuta säädöt kuntoon kulloinkin halutulla tavalla. Tehtäväksiannon puitteissa en kuitenkaan nää syytä toteuttaa sitä tämän raportoinnin puitteissa, sillä aikaa käytettäväksi on rajallisesti.
+Tällä tavalla periaatteessa voisi saada toteutettua kaikki sertifikaatti asiat palvelimelle yms. muut säädöt kuntoon kulloinkin halutulla tavalla. Tehtäväksiannon puitteissa en kuitenkaan nää syytä toteuttaa sitä tämän raportoinnin puitteissa, sillä aikaa käytettäväksi on rajallisesti.
 
 _parantelu lopetettu klo. 20:48_
 
