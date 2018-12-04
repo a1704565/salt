@@ -232,11 +232,14 @@ echo "database for testing purposes has been created" | sudo tee /etc/mysql/done
 - seuraavaksi luodaan käyttäjä, jolla on oikeudet tietokantaan ja tunnistautuminen käy salasanalla
 - viimeisenä luodaan done.log teidosto, jota käytetään myöhemmässä vaiheessa hyödyksi tunnistamaan, onko komennot jo ajettu vai ei
 
-Kyseinen database.sh on tallennettu polkuun /srv/salt/www ja sen omistajuus on muutettu saltille `Lenovo$ sudo chown salt database.sh`, sen oikeudet on myös muutettu `sudo chmod 400 database.sh`. Tämä tarkoittaa että vain omistajalla eli saltilla on lukuoikeus tiedostoon.
+Kyseinen database.sh on tallennettu polkuun `/srv/salt/www` ja sen omistajuus on muutettu saltille `sudo chown salt database.sh`, sen oikeudet on myös muutettu `sudo chmod 400 database.sh`. Tämä tarkoittaa, että vain omistajalla eli saltilla on lukuoikeus tiedostoon ja muilla ei ole oikeuksia tiedostoon.
 
 Muutosten testaus:
 
 ```Shell
+Lenovo$ ls -l /srv/salt/www/database.sh 
+-r-------- 1 salt root 288 joulu  4 19:22 /srv/salt/www/database.sh
+
 Lenovo$ cat /srv/salt/www/database.sh 
 cat: /srv/salt/www/database.sh: Permission denied
 ```
@@ -271,7 +274,7 @@ mariadb:
   pkg.installed:
     - pkgs:
       - mariadb-server
-      - mariadb-client 
+      - mariadb-client
 
 database:
   cmd.script:
