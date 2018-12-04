@@ -1,3 +1,5 @@
+#Copyright 2018 Juha-Pekka Pulkkinen https://github.com/a1704565 GNU General Public License v3.0
+
 apache2:
   pkg.installed
 
@@ -20,22 +22,11 @@ apache2service:
       - file: /etc/apache2/mods-enabled/userdir.conf
       - file: /etc/apache2/mods-enabled/userdir.load
 
-mariadb-server:
-  pkg.installed
-
-/etc/mysql/mariadb.cnf:
-  file.managed:
-    - source: salt://mariadb.cnf
-
-mariadb_service:
-  service.running:
-    - name: mariadb.service
-    - watch:
-      - file: /etc/mysql/mariadb.cnf
-
-mariadb-client:
-  pkg.installed
-
+mariadb:
+  pkg.installed:
+    - pkgs:
+      - mariadb-server
+      - mariadb-client 
 
 php:
   pkg.installed
