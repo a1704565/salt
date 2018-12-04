@@ -172,7 +172,7 @@ Selite:
 
 - kirjaututaan sisään mariadb:hen
 - lisätään tietokanta nimeltä minion
-- lisätään luotuun tietokantaan kaikki oikeudet käyttäjälle minionuser (komento samalla luo tämän käyttäjän), käyttäjä tunnistautuu turvallisella salasanalla (tässä se on vain esimerkki)
+- lisätään luotuun tietokantaan kaikki oikeudet käyttäjälle minionuser (samalla komento luo tämän käyttäjän), käyttäjä tunnistautuu salasanalla (tässä se on vain esimerkki)
 
 Manuaalisesti ajetun tilanteen tarkastus:
 
