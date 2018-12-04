@@ -412,7 +412,7 @@ Total states run:     8
 Total run time: 542.822 ms
 ```
 
-Tulos näyttäisi olevan odotetun mukainen, ja kaikki toimii kuten pitääkin, sillä database kohta ilmoittaa _"Comment: All files in creates exist"_
+Tulos näyttäisi olevan odotetun mukainen, ja kaikki toimii kuten pitääkin, sillä database kohta ilmoittaa _"Comment: All files in creates exist"_.
 
 **Automatisoidusti luodun tietokannan testaaminen:**
 
