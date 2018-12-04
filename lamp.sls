@@ -28,5 +28,12 @@ mariadb:
       - mariadb-server
       - mariadb-client 
 
+database:
+  cmd.script:
+    - name: database.sh
+    - source: salt://www/database.sh
+    - creates:
+      - /etc/mysql/done.log
+
 php:
   pkg.installed

@@ -159,6 +159,8 @@ _Edeltävän parantelu aloitettu klo. 17:43 4.12.2018_
 
 Edeltävän tilan toiminnallisuutta voisi parantaa entisestään, lisäämällä Mariadb:hen tietokannan ja käyttäjän ihan testimielessä, vaikka tehtäväksiannossa tätä kohtaa ei mainitakaan suoranaisesti.
 
+**huom!** Tämä ei välttämättä ole turvallista toteuttaa näin oikeassa 
+
 Salt-tilan ajamisen jälkeen ajettu manuaalisesti nämä komennot minionilla:
 
 ```Shell
@@ -174,7 +176,7 @@ Selite:
 - lisätään tietokanta nimeltä minion
 - lisätään luotuun tietokantaan kaikki oikeudet käyttäjälle minionuser (samalla komento luo tämän käyttäjän), käyttäjä tunnistautuu salasanalla (tässä se on vain esimerkki)
 
-Manuaalisesti ajetun tilanteen tarkastus:
+**Manuaalisesti ajetun tilanteen tarkastus:**
 
 ```Shell
 MariaDB [(none)]> SHOW DATABASES;
@@ -206,3 +208,207 @@ Selite:
 - Tarkastettu oikeudet, komento näyttää myös samalla käyttäjän, joten kaikki myös ok
 - Poistuttu mariadb:stä exit komennolla
 
+Poistettu tässä vaiheessa mariadb client ja server, sekä luodut teitokannat yms.
+
+    sudo apt-get -y autoremove --purge mariadb-client
+    sudo apt-get -y autoremove --purge mariadb-server
+
+![mariadb-server uninstall](img/mdbs01.png)
+
+
+**Automaation luominen:**
+
+Loin ensin ShellScriptin (database.sh), joka tekee tarvittavat toimenpiteet, jonka jälkeen otin selvää saltin [manuaalista](https://docs.saltstack.com/en/latest/ref/states/all/salt.states.cmd.html), kuinka voin juoksuttaa sen vain kerran, ettei operaatiota toisteta turhaan useasti, jos tietokanta ja käyttäjä on jo kerran luotu. Tähän löytyi monta eri tatkaisua ja päädyin niistä itselle helpoimpaan vaihtoehtoon (selostus alempana).
+
+```Shell
+#!/bin/bash
+echo "CREATE DATABASE minion;" | sudo mariadb -u root
+echo "GRANT ALL ON minion.* TO minionuser@localhost IDENTIFIED BY 'jotjH_goeYER-83jtej2-insert-better-password';" | sudo mariadb -u $
+echo "database for testing purposes has been created" | sudo tee /etc/mysql/done.log
+```
+**Vaiheet:**
+
+- ensin luodaan echoa käyttäen mariadb:hen database nimeltä minion
+- seuraavaksi luodaan käyttäjä, jolla on oikeudet tietokantaan ja tunnistautuminen käy salasanalla
+- viimeisenä luodaan done.log teidosto, jota käytetään myöhemmässä vaiheessa hyödyksi tunnistamaan, onko komennot jo ajettu vai ei
+
+Kyseinen database.sh on tallennettu polkuun /srv/salt/www ja sen omistajuus on muutettu saltille `Lenovo$ sudo chown salt database.sh`, sen oikeudet on myös muutettu `sudo chmod 400 database.sh`. Tämä tarkoittaa että vain omistajalla eli saltilla on lukuoikeus tiedostoon.
+
+Muutosten testaus:
+
+```Shell
+Lenovo$ cat /srv/salt/www/database.sh 
+cat: /srv/salt/www/database.sh: Permission denied
+```
+
+
+**Päivitetty versio tiedostosta lamp.sls**
+
+```YAML
+apache2:
+  pkg.installed
+
+/var/www/html/index.html:
+  file.managed:
+    - source: salt://www/index.html
+
+/etc/apache2/mods-enabled/userdir.conf:
+  file.symlink:
+    - target: ../mods-available/userdir.conf
+
+/etc/apache2/mods-enabled/userdir.load:
+  file.symlink:
+    - target: ../mods-available/userdir.load
+
+apache2service:
+  service.running:
+    - name: apache2
+    - watch:
+      - file: /etc/apache2/mods-enabled/userdir.conf
+      - file: /etc/apache2/mods-enabled/userdir.load
+
+mariadb:
+  pkg.installed:
+    - pkgs:
+      - mariadb-server
+      - mariadb-client 
+
+database:
+  cmd.script:
+    - name: database.sh
+    - source: salt://www/database.sh
+    - creates:
+      - /etc/mysql/done.log
+
+php:
+  pkg.installed
+```
+
+**Seloste lisätystä vaiheesta database:**
+
+- cmd.script komennolla ajetaan läpi luotu skripti
+- name määrittää ajettavan skriptin nimen
+- source määrittää missä tiedosto sijaitsee (tässä tapauksessa se on saltin alakansiossa www)
+- creates määrittää, että skripti luo tiedoston polkuun /etc/mysql/done.log ja mikäli salt-tila ajetaan uudestaan skriptiä ei ajeta, koska kyseinen .log tiedosto on jo olemassa. Salt siis päättelee asian logiikalla "koska done.log = olemassa, kaikka tarvittavat tiedostot on jo luotu"
+
+**Testaus**
+
+Ajetaan salt-tila ensimmäisen kerran:
+
+```Shell
+Lenovo$ sudo salt '*' state.apply lamp
+
+###
+----------
+          ID: database
+    Function: cmd.script
+        Name: database.sh
+      Result: True
+     Comment: Command 'database.sh' run
+     Started: 20:01:40.974556
+    Duration: 83.778 ms
+     Changes:   
+              ----------
+              pid:
+                  31796
+              retcode:
+                  0
+              stderr:
+              stdout:
+                  database for testing purposes has been created
+----------
+
+###
+
+Summary for labrabuntu
+------------
+Succeeded: 8 (changed=8)
+Failed:    0
+------------
+Total states run:     8
+Total run time:  41.315 
+```
+Ajetaan salt-tila uudestaan, jolloin mitään ei pitäisi muuttua:
+
+```Shell
+Lenovo$ sudo salt '*' state.apply lamp
+labrabuntu:
+----------
+          ID: apache2
+    Function: pkg.installed
+      Result: True
+     Comment: All specified packages are already installed
+     Started: 20:46:54.465489
+    Duration: 365.623 ms
+     Changes:   
+----------
+          ID: /var/www/html/index.html
+    Function: file.managed
+      Result: True
+     Comment: File /var/www/html/index.html is in the correct state
+     Started: 20:46:54.833493
+    Duration: 131.971 ms
+     Changes:   
+----------
+          ID: /etc/apache2/mods-enabled/userdir.conf
+    Function: file.symlink
+      Result: True
+     Comment: Symlink /etc/apache2/mods-enabled/userdir.conf is present and owned by root:root
+     Started: 20:46:54.965638
+    Duration: 1.69 ms
+     Changes:   
+----------
+          ID: /etc/apache2/mods-enabled/userdir.load
+    Function: file.symlink
+      Result: True
+     Comment: Symlink /etc/apache2/mods-enabled/userdir.load is present and owned by root:root
+     Started: 20:46:54.967448
+    Duration: 1.474 ms
+     Changes:   
+----------
+          ID: apache2service
+    Function: service.running
+        Name: apache2
+      Result: True
+     Comment: The service apache2 is already running
+     Started: 20:46:54.970634
+    Duration: 34.073 ms
+     Changes:   
+----------
+          ID: mariadb
+    Function: pkg.installed
+      Result: True
+     Comment: All specified packages are already installed
+     Started: 20:46:55.004904
+    Duration: 4.644 ms
+     Changes:   
+----------
+          ID: database
+    Function: cmd.script
+        Name: database.sh
+      Result: True
+     Comment: All files in creates exist
+     Started: 20:46:55.010744
+    Duration: 0.467 ms
+     Changes:   
+----------
+          ID: php
+    Function: pkg.installed
+      Result: True
+     Comment: All specified packages are already installed
+     Started: 20:46:55.011293
+    Duration: 2.88 ms
+     Changes:   
+
+Summary for labrabuntu
+------------
+Succeeded: 8
+Failed:    0
+------------
+Total states run:     8
+Total run time: 542.822 ms
+```
+
+Tulos näyttäisi olevan odotetun mukainen, ja kaikki toimii kuten pitääkin.
+
+_tehtävän teko lopetettu klo. 20:48_
