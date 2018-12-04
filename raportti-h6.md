@@ -36,7 +36,7 @@ Minion = labrabuntu
 
 ---
 
-Tehtäväksianto löytyy kohdassa h6 tästä linkistä; [terokarvinen.com](http://terokarvinen.com/2018/aikataulu--palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to--loppukevat-2018-5p) (tarkistettu viimeksi 4.12.2018)
+Tehtäväksianto löytyy kohdassa h6, tästä linkistä; [terokarvinen.com](http://terokarvinen.com/2018/aikataulu--palvelinten-hallinta-ict4tn022-3004-ti-ja-3002-to--loppukevat-2018-5p) (tarkistettu viimeksi 4.12.2018)
 
 ---
 
@@ -51,7 +51,7 @@ Tehtävän tekeminen aloitettu: _klo. 6:38 4.12.2018_
 
 Labrabuntu kone on määritetty tässä vaiheessa minioniksi koneelle Lenovo.
 
-Minulla oli jo omassa gituhubissa jossain vaiheessa testailuun luomani salt-tila [lamp.sls](https://github.com/a1704565/salt/blob/master/lamp-old.sls), jota muokkaamalla lähdin toetuttamaan tehtävää. Uusin versio löytyy [täältä](https://github.com/a1704565/salt/blob/master/lamp.sls).
+Minulla oli jo omassa gituhubissa jossain vaiheessa testailuun luomani salt-tila, jonka uudestaan nimesin [lamp-old.sls](https://github.com/a1704565/salt/blob/master/lamp-old.sls), koska tuota alkuperäistä muokkaamalla lähdin toetuttamaan tätä uutta tehtävää. Uusin versio löytyy täältä nimellä [lamp.sls](https://github.com/a1704565/salt/blob/master/lamp.sls).
 
 **Muokattu lamp.sls:**
 
