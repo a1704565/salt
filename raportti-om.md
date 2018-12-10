@@ -18,4 +18,20 @@ _Koneen tiedot:_
 
 Kone tulee olemaan myös jatkossa salt-master muille myöhemmin määritetyille koneile, joten työstettävä moduuli ajetaan sille vain kerran `salt-call --local` komennolla.
 
+## Tilanteen kartoitus
+
+Listaus asioista, jotka tahdon toimimaan alustavasti kotipalvelimelle:
+
+- LAMP
+  - Apache2
+  - PHP 7.2
+    - yleiset moduulit
+  - MariaBD (client ja server)
+- OpenSSH-server
+- samba
+- git
+- salt-master
+- xubuntu-restricted-extras
+- ufw
+  - asetukset kuntoon valmiiksi
 
