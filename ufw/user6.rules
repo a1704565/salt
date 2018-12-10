@@ -1,3 +1,5 @@
+#This is a managed file, do not make changes to it because they will be overwritten.
+
 *filter
 :ufw6-user-input - [0:0]
 :ufw6-user-output - [0:0]
