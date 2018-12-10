@@ -16,7 +16,20 @@ _Koneen tiedot:_
 * Käyttöjärjestelmä: Xubuntu 18.04.01 LTS
 * Lyvytila: 2x 250GB HDD 
 
-Kone tulee olemaan myös jatkossa salt-master muille myöhemmin määritetyille koneile, joten työstettävä moduuli ajetaan sille vain kerran `salt-call --local state.highstate` komennolla.
+Koneelle on annettu nimi `xuse` ja se tulee olemaan jatkossa salt-master muille myöhemmin määritetyille koneile, joten työstettävä moduuli ajetaan sille lopuksi komennolla `salt-call --local state.highstate`.
+
+Ennen lopullista vaihetta, käytän tilanteen helpottamiseksi toista konetta masterina ja xuse on määritetty tässä vaiheessa minioniksi.
+
+_Väliaikaisen masterin tiedot:_
+
+* Koneen malli: Lenovo Z50-70
+* CPU: Intel Core i5-4210U @ 4x 2.7GHz
+* RAM: 16GB, 1600MHz DDR3
+* GPU: Intel integrated graphics / nVidia GeForce 820
+* Käyttöjärjestelmä: Xubuntu 18.04 LTS
+* Lyvytila: noin 120GB (SSD), toinen vastaava osio varattu Windows 10 käyttöön
+
+**Huom!** Manuaaliset komennot ajettu ssh-yhteyden yli kohdekoneella.
 
 ---
 
@@ -80,9 +93,9 @@ Tarkoitus on, että kyseisen skriptin voi hakea koneelle githubista komennolla `
 
 # hsrv.sls
 
-Salt-tilan kasaaminen aloitettu vanhojen tunneilla ja läksyinä tehtyjen moduulien pohjalta, joita olen muokannut paremmin tähän tarkoitukseen sopivaksi.
+Salt-tilan kasaaminen aloitettu vanhojen tunneilla ja läksyinä tehtyjen moduulien pohjalta, joita olen muokannut paremmin tähän tarkoitukseen sopivaksi. Hsrv.sls nimi tulee käsitteestä home server.
 
-**keskeneräinen salt-tila**
+**Keskeneräinen salt-tila**
 
 ```YAML
 #things to install
@@ -176,7 +189,7 @@ mariadb:
   * asennetaan samba
 2. #Apache2 setup
   * asennetaan apache2
-  * vaihdetaan etusivuksi index.html, joka löytyy saltin polusta `salt://www/hsrv/index.html`
+  * vaihdetaan etusivuksi index.html, joka löytyy saltin polusta `salt://www/hsrv/index.html`.
   * otetaan käyttöön userdir-moduuli
   * mikäli muutosta tapahtuu, käynnistetän palvelu apache2 uudestaan
 3. #PHP setup
@@ -187,9 +200,40 @@ mariadb:
 4. #Mariadb default setup
   * asennetaan mariadb-server ja mariadb-client, asetuksia ei muuteta
 
+**Testaus**
+
+Ajettu edeltävää useamman kerran komennolla `sudo salt '*' state.highstate` käyttäen väliaikaista master konetta. Tämä toimii, koska top.sls on määritetty seuraavasti:
+
+```YAML
+base:
+  '*':
+    - workstation
+
+  'xuse':
+    - hsrv
+```
+**Selite**
+
+Top.sls sisältöön on määritetty, että kaikille koneille suoritetaan tila workstation, mutta koneelle xuse ajetaan tila nimeltä hsrv.
+
+**Tulokset**
+
+Tulokset muutaman ajon jälkeen ovat samat, kuin ensimmäiselläkin ajolla, toki runtime on tässä huomattavasti pienempi kuin ensimmäisellä kerralla;
+
+```Shell
+Summary for xuse
+-------------
+Succeeded: 15
+Failed:     0
+-------------
+Total states run:     15
+Total run time:    1.860 s
+```
+
+
 ## palomuurin asetukset
 
-Aluks ajettu tahdotut asetukset käsin:
+Aluksi ajettu tahdotut asetukset käsin, jotta automatisointi onnistuu myöhemmin:
 
 ```Shell
 sudo ufw default deny incoming
