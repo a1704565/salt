@@ -231,7 +231,7 @@ Total run time:    1.860 s
 ```
 
 
-## palomuurin asetukset
+## Palomuurin asetukset
 
 Aluksi ajettu tahdotut asetukset käsin, jotta automatisointi onnistuu myöhemmin:
 
@@ -416,5 +416,6 @@ To                         Action      From
 ```
 Kaikki näyttäisi toimivan tähän asti hyvin.
 
-# Samba
+## Samba
+
 
