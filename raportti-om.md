@@ -36,3 +36,28 @@ Listaus asioista, jotka tahdon toimimaan alustavasti kotipalvelimella:
   - asetukset valmiiksi
 
 Lista saattaa muuttua vielä työn edetessä.
+
+## Toteutus
+
+Luotu ShellScript, joka hoitaa perustarpeet kuntoon, eli asentaa salt-masterin ja gitin, sekä kloonaa tarvittavat tiedostot polkuun `/srv/salt/` j amäärittää gitille muutaman globaalin asetuksen.
+
+```ShellScript
+#!/bin/bash
+
+echo "Running the start script! Please wait..."
+
+setxkbmap fi
+sudo timedatectl set-timezone Europe/Helsinki
+sleep 2s
+sudo apt-get update
+sudo apt-get install -y salt-master git
+sudo git clone https://github.com/a1704565/salt.git /srv/salt
+
+git config --global user.email "juha-pekka.pulkkinen@myy.haaga-helia.fi"
+git config --global user.name "Juha-Pekka Pulkkinen"
+git config --global credential.helper "cache --timeout=3600"
+
+echo "Everything complete! Salt-master and git have been isntalled, clone from github is ready."
+```
+
+Tarkoitus on, että kyseisen skriptin voi hakea koneelle githubista komennolla `wget ` ja ajaa käyttämällä komentoa `bash`, jolloin edeltävät toiminnot ajetaan.
