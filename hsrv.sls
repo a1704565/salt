@@ -3,6 +3,19 @@
 apache2:
   pkg.installed
 
+php-packages:
+  pkg.installed:
+    - pkgs:
+      - php
+      - php-pear
+      - php7.2-dev
+      - php7.2-zip
+      - php7.2-curl
+      - php7.2-gd
+      - php7.2-mysql
+      - php7.2-xml
+      - libapache2-mod-php7.2
+
 /var/www/html/index.html:
   file.managed:
     - source: salt://www/index.html
@@ -26,14 +39,6 @@ mariadb:
   pkg.installed:
     - pkgs:
       - mariadb-server
-      - mariadb-client 
+      - mariadb-client
 
-database:
-  cmd.script:
-    - name: database.sh
-    - source: salt://www/database.sh
-    - creates:
-      - /etc/mysql/done.log
-
-php:
-  pkg.installed
+#Lisää tulee
