@@ -60,4 +60,20 @@ git config --global credential.helper "cache --timeout=3600"
 echo "Everything complete! Salt-master and git have been isntalled, clone from github is ready."
 ```
 
-Tarkoitus on, että kyseisen skriptin voi hakea koneelle githubista komennolla `wget https://raw.githubusercontent.com/a1704565/salt/master/start/hsrv.sh` ja ajaa käyttämällä komentoa `bash`, jolloin edeltävät toiminnot ajetaan.
+**Selite**
+
+* Ilmoitetaan echolla scriptin aloitus
+* Näppäimistön kieli muuttuu suomeksi (ei välttämättä pakollinen, mutta ihan varalta)
+* Aikavyöhyke asetetaan Europe/Helsinki (varalta)
+* Päivitetään pakettilista
+* Asennetaan salt-master ja git
+* kloonataan githubista salt.git sisältö polkuun `/srv/salt`
+* git globaali asetus user.email
+* git globaali asetus user.name
+* git globaali asetus, jolla määritetty odotusajaksi tunti ennen seuraavaa salasanakyselyä
+* echo ilmoittaa että kaikki on toimenpiteet on suoritettu
+
+
+Tarkoitus on, että kyseisen skriptin voi hakea koneelle githubista komennolla `wget https://raw.githubusercontent.com/a1704565/salt/master/start/hsrv.sh` ja se voidaan ajaa käyttämällä komentoa `bash`, jolloin edeltävät toiminnot ajetaan.
+
+
