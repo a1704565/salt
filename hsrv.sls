@@ -16,6 +16,21 @@ php-packages:
       - php7.2-xml
       - libapache2-mod-php7.2
 
+/etc/apache2/mods-available/php7.2.conf:
+  file.managed:
+    - source: salt://php/php7.2.conf
+
+/etc/apache2/mods-available/php7.2.load:
+  file.managed:
+    - source: salt://php/php7.2.load
+
+php-apache2service:
+  service.running:
+    - name: apache2
+    - watch:
+      - file: /etc/apache2/mods-enabled/userdir.conf
+      - file: /etc/apache2/mods-enabled/userdir.load
+
 /var/www/html/index.html:
   file.managed:
     - source: salt://www/index.html
