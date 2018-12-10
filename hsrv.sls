@@ -1,7 +1,40 @@
 #Copyright 2018 Juha-Pekka Pulkkinen https://github.com/a1704565 GNU General Public License v3.0
 
+
+#things to install
+
+installer:
+  pkg.installed:
+    - pkgs:
+      - xubuntu-restricted-extras
+      - openssh-server
+      - samba
+
+#Apache2 setup
+
 apache2:
   pkg.installed
+
+/var/www/html/index.html:
+  file.managed:
+    - source: salt://www/hsrv/index.html
+
+/etc/apache2/mods-enabled/userdir.conf:
+  file.symlink:
+    - target: ../mods-available/userdir.conf
+
+/etc/apache2/mods-enabled/userdir.load:
+  file.symlink:
+    - target: ../mods-available/userdir.load
+
+apache2service:
+  service.running:
+    - name: apache2
+    - watch:
+      - file: /etc/apache2/mods-enabled/userdir.conf
+      - file: /etc/apache2/mods-enabled/userdir.load
+
+#PHP setup
 
 php-packages:
   pkg.installed:
@@ -24,31 +57,26 @@ php-packages:
   file.managed:
     - source: salt://php/php7.2.load
 
+/etc/apache2/mods-enabled/php7.2.conf:
+  file.symlink:
+    - target: ../mods-available/php7.2.conf
+
+/etc/apache2/mods-enabled/php7.2.load:
+  file.symlink:
+    - target: ../mods-available/php7.2.load
+
 php-apache2service:
   service.running:
     - name: apache2
     - watch:
-      - file: /etc/apache2/mods-enabled/userdir.conf
-      - file: /etc/apache2/mods-enabled/userdir.load
+      - file: /etc/apache2/mods-enabled/php7.2.conf
+      - file: /etc/apache2/mods-enabled/php7.2.load
 
-/var/www/html/index.html:
+/var/www/html/test.php:
   file.managed:
-    - source: salt://www/index.html
+    - source: salt://www/hsrv/test.php
 
-/etc/apache2/mods-enabled/userdir.conf:
-  file.symlink:
-    - target: ../mods-available/userdir.conf
-
-/etc/apache2/mods-enabled/userdir.load:
-  file.symlink:
-    - target: ../mods-available/userdir.load
-
-apache2service:
-  service.running:
-    - name: apache2
-    - watch:
-      - file: /etc/apache2/mods-enabled/userdir.conf
-      - file: /etc/apache2/mods-enabled/userdir.load
+#Mariadb default setup
 
 mariadb:
   pkg.installed:
@@ -56,4 +84,6 @@ mariadb:
       - mariadb-server
       - mariadb-client
 
-#Lisää tulee
+#ufw setup
+
+#other stuff
