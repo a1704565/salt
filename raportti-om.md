@@ -39,7 +39,7 @@ Lista saattaa muuttua vielä työn edetessä.
 
 ## Toteutus
 
-Luotu ShellScript, joka hoitaa perustarpeet kuntoon, eli asentaa salt-masterin ja gitin, sekä kloonaa tarvittavat tiedostot polkuun `/srv/salt/` j amäärittää gitille muutaman globaalin asetuksen.
+Luotu ShellScript, joka hoitaa perustarpeet kuntoon, eli asentaa salt-masterin ja gitin, sekä kloonaa tarvittavat tiedostot polkuun `/srv/salt/` ja määrittää gitille muutaman globaalin asetuksen.
 
 ```ShellScript
 #!/bin/bash
