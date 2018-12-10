@@ -416,6 +416,8 @@ To                         Action      From
 ```
 Kaikki näyttäisi toimivan tähän asti hyvin.
 
+Lopetettu työskentely tältä erää klo. 13.30
+
 ## Samba
 
 
