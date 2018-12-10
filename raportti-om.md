@@ -35,24 +35,7 @@ _Väliaikaisen masterin tiedot:_
 
 ## Varaamani aihe
 
-> Juha-Pekka Pulkkinen says:
-	
-> 2018-11-29 at 07:56
-
->Varaan miniprojektin aiheeksi moduulin, joka asentaa kotipalvelimeksi tulevaan koneeseen yleisimmin  käyttämäni ohjelmistot ja laittaa samalla ohjelmien asetukset kohdalleen valmiiksi.
-
-> Palvelimelle tulee ainakin:
-
-> – Apache2
-
-> – PHP
-
-> – Samba
-
-> – OpenSSH
-
-> yms.
-
+![alt text](/img/varaus.png "varattu aihe")
 
 
 ## Tilanteen kartoitus
