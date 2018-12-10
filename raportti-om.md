@@ -52,7 +52,7 @@ Listaus asioista, jotka tahdon toimimaan alustavasti kotipalvelimella:
 
 Lista saattaa muuttua vielä työn edetessä.
 
-## Toteutus
+# Toteutus
 
 Luotu ShellScript, joka hoitaa perustarpeet kuntoon, eli asentaa salt-masterin ja gitin, sekä kloonaa tarvittavat tiedostot polkuun `/srv/salt/` ja määrittää gitille muutaman globaalin asetuksen.
 
@@ -91,9 +91,9 @@ echo "Everything complete! Salt-master and git have been isntalled, clone from g
 
 Tarkoitus on, että kyseisen skriptin voi hakea koneelle githubista komennolla `wget https://raw.githubusercontent.com/a1704565/salt/master/start/hsrv.sh` ja se voidaan ajaa käyttämällä komentoa `bash`, jolloin edeltävät toiminnot ajetaan.
 
-# hsrv.sls
+## hsrv.sls
 
-Salt-tilan kasaaminen aloitettu vanhojen tunneilla ja läksyinä tehtyjen moduulien pohjalta, joita olen muokannut paremmin tähän tarkoitukseen sopivaksi. Hsrv.sls nimi tulee käsitteestä home server.
+Salt-tilan kasaaminen aloitettu vanhojen tunneilla ja läksyinä tehtyjen moduulien pohjalta, joita olen muokannut paremmin tähän tarkoitukseen sopivaksi. Hsrv.sls nimi tulee käsitteestä home server. Uusin versio saatavilla tästä [linkistä](https://github.com/a1704565/salt/blob/master/hsrv.sls).
 
 **Keskeneräinen salt-tila**
 
@@ -276,4 +276,145 @@ To                         Action      From
 * `ufw allow 4505/tcp` + `ufw allow 4506/tcp` Sallitaan Salt-masterin käyttämät TCP portit 4505 ja 4506
 * `ufw enable` käynnistetty palomuuri sääntöineen
 * `ufw status verbose` tarkastettu palomuurin nykyinen tila
+
+**Pohdintaa**
+Ufw tekee asetukset useampaan tiedostoon sijainnissa `/etc/ufw` tässä tapauksessa tärkeässä roolissa näyttäisi olevan viisi tiedostoa, sillä näiden sisältö oli muuttunut tekemieni manuaalisten sääntöjen jälkeen.
+
+```Shell
+-rw-r-----   1 root root  915 joulu 10 09:37 after6.rules
+-rw-r-----   1 root root 1004 joulu 10 09:37 after.rules
+-rw-r--r--   1 root root  313 joulu 10 09:40 ufw.conf
+-rw-r-----   1 root root 2,1K joulu 10 09:40 user6.rules
+-rw-r-----   1 root root 2,1K joulu 10 09:40 user.rules
+```
+
+Kopioitu nämä tiedostot talteen luomaani kansioon `ufw`, joka löytyy saltin kansiorakenteen sisältä.
+
+**Palomuuriasetusten automaatio**
+
+Tämä osuus lisätty tiedostoon hsrv.sls:
+
+```YAML
+#ufw setup
+
+/etc/ufw/after6.rules:
+  file.managed:
+    - source: salt://ufw/after6.rules
+    - user: root
+    - group: root
+    - mode: 640
+
+/etc/ufw/after.rules:
+  file.managed:
+    - source: salt://ufw/after.rules
+    - user: root
+    - group: root
+    - mode: 640
+
+/etc/ufw/ufw.conf:
+  file.managed:
+    - source: salt://ufw/ufw.conf
+    - user: root
+    - group: root
+    - mode: 644
+
+/etc/ufw/user6.rules:
+  file.managed:
+    - source: salt://ufw/user6.rules
+    - user: root
+    - group: root
+    - mode: 640
+
+/etc/ufw/user.rules:
+  file.managed:
+    - source: salt://ufw/user.rules
+    - user: root
+    - group: root
+    - mode: 640
+
+ufw-service:
+  cmd.run:
+    - name: sudo ufw enable
+    - onchanges:
+      - file: /etc/ufw/after6.rules
+      - file: /etc/ufw/after.rules
+      - file: /etc/ufw/ufw.conf
+      - file: /etc/ufw/user6.rules
+      - file: /etc/ufw/user.rules
+```
+
+**selite**
+
+* Kaikki 5kpl tiedostoja on kopioitu kohteen polkuun `/etc/ufw/` saltin polusta `salt://ufw/`.
+* Kaikille tiedostoille on määritetty omistajaksi ja ryhmäksi root
+* Yhdelle teidostolle on määritetty oikeudet 644;
+  * omistajalla = luku- ja kirjoitusoikeus
+  * ryhmällä = lukuoikeus
+  * julkisesti = lukuoikeis
+* Muilla tiedostoilla on oikeudet 640;
+  * omistajalla = luku- ja kirjoitusoikeus
+  * ryhmällä = lukuoikeus
+* Mikäli muutoksia `onchanges` tulee edellä mainittuihin tieostoihin, niin suoritetaan komento `sudo ufw enable`, joka määrittää palomuurin takaisin käyttöön.
+
+**Testaus**
+
+Ajettu ensin highstate sellaisenaan:
+
+```Shell
+sudo salt '*' state.highstate
+
+###
+
+Summary for xuse
+-------------
+Succeeded: 21
+Failed:     0
+-------------
+Total states run:     21
+Total run time:    2.007 s
+```
+
+Muutettu aluksi palomuurin asetuksia ja poistettu se käytöstä, ennen highstaten ajamista uudelleen:
+
+```Shell
+sudo salt '*' state.highstate
+
+###
+
+Summary for xuse
+-------------
+Succeeded: 21 (changed=4)
+Failed:     0
+-------------
+Total states run:     21
+Total run time:    3.065 s
+```
+
+Tarkastettu tilanne ssh-yhteyden yli kohdekonella:
+
+```Shell
+sudo ufw status verbose
+Status: active
+Logging: on (low)
+Default: deny (incoming), allow (outgoing), disabled (routed)
+New profiles: skip
+
+To                         Action      From
+--                         ------      ----
+80,443/tcp (Apache Full)   ALLOW IN    Anywhere
+22/tcp (OpenSSH)           ALLOW IN    Anywhere
+137,138/udp (Samba)        ALLOW IN    Anywhere
+139,445/tcp (Samba)        ALLOW IN    Anywhere
+4505/tcp                   ALLOW IN    Anywhere
+4506/tcp                   ALLOW IN    Anywhere
+80,443/tcp (Apache Full (v6)) ALLOW IN    Anywhere (v6)
+22/tcp (OpenSSH (v6))      ALLOW IN    Anywhere (v6)
+137,138/udp (Samba (v6))   ALLOW IN    Anywhere (v6)
+139,445/tcp (Samba (v6))   ALLOW IN    Anywhere (v6)
+4505/tcp (v6)              ALLOW IN    Anywhere (v6)
+4506/tcp (v6)              ALLOW IN    Anywhere (v6)
+```
+Kaikki näyttäisi toimivan tähän asti hyvin.
+
+#Samba
 

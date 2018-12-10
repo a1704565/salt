@@ -86,4 +86,49 @@ mariadb:
 
 #ufw setup
 
+/etc/ufw/after6.rules:
+  file.managed:
+    - source: salt://ufw/after6.rules
+    - user: root
+    - group: root
+    - mode: 640
+
+/etc/ufw/after.rules:
+  file.managed:
+    - source: salt://ufw/after.rules
+    - user: root
+    - group: root
+    - mode: 640
+
+/etc/ufw/ufw.conf:
+  file.managed:
+    - source: salt://ufw/ufw.conf
+    - user: root
+    - group: root
+    - mode: 644
+
+/etc/ufw/user6.rules:
+  file.managed:
+    - source: salt://ufw/user6.rules
+    - user: root
+    - group: root
+    - mode: 640
+
+/etc/ufw/user.rules:
+  file.managed:
+    - source: salt://ufw/user.rules
+    - user: root
+    - group: root
+    - mode: 640
+
+ufw-service:
+  cmd.run:
+    - name: sudo ufw enable
+    - onchanges:
+      - file: /etc/ufw/after6.rules
+      - file: /etc/ufw/after.rules
+      - file: /etc/ufw/ufw.conf
+      - file: /etc/ufw/user6.rules
+      - file: /etc/ufw/user.rules
+
 #other stuff
