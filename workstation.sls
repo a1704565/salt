@@ -3,3 +3,4 @@ workstation:
     - pkgs:
       - firefox
       - vlc
+      - chromium-browser
