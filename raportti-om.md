@@ -20,7 +20,7 @@ Kone tulee olemaan myös jatkossa salt-master muille myöhemmin määritetyille 
 
 ## Tilanteen kartoitus
 
-Listaus asioista, jotka tahdon toimimaan alustavasti kotipalvelimelle:
+Listaus asioista, jotka tahdon toimimaan alustavasti kotipalvelimella:
 
 - LAMP
   - Apache2
@@ -33,5 +33,6 @@ Listaus asioista, jotka tahdon toimimaan alustavasti kotipalvelimelle:
 - salt-master
 - xubuntu-restricted-extras
 - ufw
-  - asetukset kuntoon valmiiksi
+  - asetukset valmiiksi
 
+Lista saattaa muuttua vielä työn edetessä.
