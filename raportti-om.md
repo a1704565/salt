@@ -522,7 +522,7 @@ Testattu seuraavaksi android puhelimella samaa:
 
 Android (FX File Explorer) näkee jaon.
 
-![Samba 04](/img/smb/smb01.jpg "Jaettu tiedosto näkyy ja sne voi avata")
+![Samba 04](/img/smb/smb04.jpg "Jaettu tiedosto näkyy ja sne voi avata")
 
 Android (FX File Explorer) näkee tiedoston ja sn voi myös avata.
 
