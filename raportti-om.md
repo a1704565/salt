@@ -494,6 +494,19 @@ sudo systemctl restart smbd.service
 
 ### Automatisointi
 
+Lisätty seuraava koodi tiedostoon hsrv.sls:
+
+```YAML
+samba:
+  pkg.installed:
+    - pkgs:
+      - samba
+      - samba-common
+      - python-glade2
+      - system-config-samba
+```
+
+
 
 
 ---
