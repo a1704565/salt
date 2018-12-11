@@ -509,6 +509,7 @@ drwxr-xr-x 3 root   root    4,0K joulu 11 00:33 ..
 Kaikki näyttäisi toimivan.
 
 Testattu myös toimiiko jako paikallisella Windows 7 koneella:
+
 ![Samba 01](/img/smb/smb01.png "Windows näkee jaon")
 
 Windows näkee jaon.
@@ -518,6 +519,7 @@ Windows näkee jaon.
 Windows näkee myös jaetun tiedoston ja sen voi avata.
 
 Testattu seuraavaksi android puhelimella samaa:
+
 ![Samba 03](/img/smb/smb03.jpg "Android näkee jaon")
 
 Android (FX File Explorer) näkee jaon.
