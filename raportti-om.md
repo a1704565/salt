@@ -435,7 +435,9 @@ Koska samba on asetettu, niin päätin luoda sille alustavat asetukset kuntoon t
 
 ### Manuaalinen tapa
 
-Aloitin kopioimalla talteen kohdekoneella originaalit samba asetukset komennolla `sudo cp -pf /etc/samba/smb.conf /etc/samba/smb.conf.bak`. Tämän jälkeen on turvallisempaa muokata tiedostoa, koska siitä on varmuuskopio.
+Asennettu enstin tarvittavat paketit käsin komennolla `sudo apt-get install samba samba-common python-glade2 system-config-samba`.
+
+Jatkoin kopioimalla talteen kohdekoneella originaalit samba asetukset komennolla `sudo cp -pf /etc/samba/smb.conf /etc/samba/smb.conf.bak`. Tämän jälkeen on turvallisempaa muokata tiedostoa, koska siitä on varmuuskopio.
 
 Muokkasin tiedostoon `smb.conf` tähän tapaukseen sopivat astukset:
 
@@ -491,6 +493,8 @@ sudo systemctl restart smbd.service
 [Samba Setup on Ubuntu 16.04 / 17.10 / 18.04 with Windows Systems](https://websiteforstudents.com/samba-setup-on-ubuntu-16-04-17-10-18-04-with-windows-systems/)
 
 ### Automatisointi
+
+
 
 ---
 

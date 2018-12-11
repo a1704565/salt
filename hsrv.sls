@@ -95,6 +95,8 @@ samba:
       - python-glade2
       - system-config-samba
 
+
+
 #ufw setup
 
 /etc/ufw/after6.rules:
