@@ -35,7 +35,7 @@ _Väliaikaisen masterin tiedot:_
 
 ## Varaamani aihe
 
-![alt text](/img/varaus.png "varattu aihe")
+![varattu aihe](/img/varaus.png "varattu aihe")
 
 
 ## Tilanteen kartoitus
@@ -492,6 +492,43 @@ sudo systemctl restart smbd.service
 **Lähde:**
 [Samba Setup on Ubuntu 16.04 / 17.10 / 18.04 with Windows Systems](https://websiteforstudents.com/samba-setup-on-ubuntu-16-04-17-10-18-04-with-windows-systems/)
 
+
+### Testaus
+
+Väliaikaisella masterilla avattu thunar ja avattu kohde `smb://xuse.local/public/` Lisätty satunnainen valokuva `public` kansioon nimeltä `DSC_1792.JPG`.
+
+SSH-yhteyden kautta kohdekoneella tarkasteltu kansiota:
+
+```Shell
+ls -lah /samba/public/
+total 8,7M
+drwxrwxr-x 2 nobody nogroup 4,0K joulu 11 01:07 .
+drwxr-xr-x 3 root   root    4,0K joulu 11 00:33 ..
+-rwxrw-rw- 1 nobody nogroup 8,6M elo   23 23:59 DSC_1792.JPG
+```
+Kaikki näyttäisi toimivan.
+
+Testattu myös toimiiko jako paikallisella Windows 7 koneella:
+![Samba 01](/img/smb/smb01.png "Windows näkee jaon")
+
+Windows näkee jaon.
+
+![Samba 02](/img/smb/smb02.png "Jaettu tiedosto näkyy ja sen voi avata")
+
+Windows näkee myös jaetun tiedoston ja sen voi avata.
+
+Testattu seuraavaksi android puhelimella samaa:
+![Samba 03](/img/smb/smb03.jpg "Android näkee jaon")
+
+Android (FX File Explorer) näkee jaon.
+
+![Samba 04](/img/smb/smb01.jpg "Jaettu tiedosto näkyy ja sne voi avata")
+
+Android (FX File Explorer) näkee tiedoston ja sn voi myös avata.
+
+
+Kaikki näyttäisi toimivan odotusten mukaisesti.
+
 ### Automatisointi
 
 Lisätty seuraava koodi tiedostoon hsrv.sls:
@@ -505,8 +542,6 @@ samba:
       - python-glade2
       - system-config-samba
 ```
-
-
 
 
 ---
