@@ -49,6 +49,9 @@ Listaus asioista, jotka tahdon toimimaan alustavasti kotipalvelimella:
   - MariaBD (client ja server)
 - OpenSSH-server
 - samba
+  - samba-common
+  - python-glade2
+  - system-config-samba
 - git
 - salt-master
 - xubuntu-restricted-extras
@@ -421,17 +424,77 @@ To                         Action      From
 ```
 Kaikki näyttäisi toimivan tähän asti hyvin.
 
-Lopetettu työskentely tältä erää klo. 13.30
+**Lähde:**
+[]()
 
 
 ## Samba
+
+Koska samba on asetettu, niin päätin luoda sille alustavat asetukset kuntoon tähän tekeillä olevaan salt-tilaan.
+
+
+### Manuaalinen tapa
+
+Aloitin kopioimalla talteen kohdekoneella originaalit samba asetukset komennolla `sudo cp -pf /etc/samba/smb.conf /etc/samba/smb.conf.bak`. Tämän jälkeen on turvallisempaa muokata tiedostoa, koska siitä on varmuuskopio.
+
+Muokkasin tiedostoon `smb.conf` tähän tapaukseen sopivat astukset:
+
+```Shell
+[global]
+   workgroup = WORKGROUP
+   server string = Samba Server %v
+   netbios name = xuse
+   security = user
+   map to guest = bad user
+   name resolve order = bcast host
+   dns proxy = no
+   bind interfaces only = yes
+
+[Public]
+   path = /samba/public
+   writable = yes
+   guest ok = yes
+   guest only = yes
+   read only = no
+   create mode = 0777
+   directory mode = 0777
+   force user = nobody
+```
+
+**Selite:**
+
+* Edeltävien asetusten avulla saadaan julkinen jako aikaiseksi ilman kirjautumista
+
+**Lähde:**
+[Samba Setup on Ubuntu 16.04 / 17.10 / 18.04 with Windows Systems](https://websiteforstudents.com/samba-setup-on-ubuntu-16-04-17-10-18-04-with-windows-systems/)
+
+
+Tämän jälkeen ajoin pari komentoa:
+
+```Shell
+sudo mkdir -p /samba/public
+sudo chown -R nobody:nogroup /samba/public
+sudo chmod -R 0775 /samba/public
+sudo systemctl restart smbd.service
+```
+**Selite:**
+
+* `mkdir -p /samba/public` = ei ilmoita virhettä, jos polulla olevat kansiot ovat jo olemassa, mutta luo tarvittaessa polun  kansiot.
+* `sudo chown -R nobody:nogroup /samba/public` = rekursiivinen tapa muuttaa omistajaksi `nobody` ja ryhmäksi `nogroup`
+* `chmod -R 0775 /samba/public` = rekursiivinen tapa antaa oikeudet;
+  * Omistaja = luku, kirjoitus, suoritus
+  * Ryhmä = luku, kirjoitus, suoritus
+  * julkinen = luku ja suoritus
+* `sudo systemctl restart smbd.service` käynnistää uudestaan samban, jotta muutokset tulisivat voimaan.
+
+**Lähde:**
+[Samba Setup on Ubuntu 16.04 / 17.10 / 18.04 with Windows Systems](https://websiteforstudents.com/samba-setup-on-ubuntu-16-04-17-10-18-04-with-windows-systems/)
+
+### Automatisointi
 
 ---
 
 # Lähdeluettelo
 
-Ratkaisuja on etsitty SaltStackin omasta nettisivuilla sijaitsevasta ohjeistuksesta.
-
-Lähinnä tärkeitä tehtävän kannalta ovat olleet seuraavat osiot:
 - https://docs.saltstack.com/en/latest/ref/states/all/salt.states.file.html
-- 
+- https://websiteforstudents.com/samba-setup-on-ubuntu-16-04-17-10-18-04-with-windows-systems/

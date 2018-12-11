@@ -8,7 +8,8 @@ installer:
     - pkgs:
       - xubuntu-restricted-extras
       - openssh-server
-      - samba
+      - tree
+      - htop
 
 #Apache2 setup
 
@@ -68,9 +69,9 @@ php-packages:
 php-apache2service:
   service.running:
     - name: apache2
-    - watch:
-      - file: /etc/apache2/mods-enabled/php7.2.conf
-      - file: /etc/apache2/mods-enabled/php7.2.load
+    - onchanges:
+      - file: /etc/apache2/mods-available/php7.2.conf
+      - file: /etc/apache2/mods-available/php7.2.load
 
 /var/www/html/test.php:
   file.managed:
@@ -83,6 +84,16 @@ mariadb:
     - pkgs:
       - mariadb-server
       - mariadb-client
+
+#Samba
+
+samba:
+  pkg.installed:
+    - pkgs:
+      - samba
+      - samba-common
+      - python-glade2
+      - system-config-samba
 
 #ufw setup
 
@@ -131,4 +142,15 @@ ufw-service:
       - file: /etc/ufw/user6.rules
       - file: /etc/ufw/user.rules
 
-#other stuff
+
+
+
+
+
+
+
+
+
+
+
+
