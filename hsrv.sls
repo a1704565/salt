@@ -95,7 +95,24 @@ samba:
       - python-glade2
       - system-config-samba
 
+public-dir:
+  cmd.script:
+    - name: smbpub.sh
+    - source: salt://samba/smbpub.sh
+    - unless: ls /samba/public/
 
+/etc/samba/smb.conf:
+  file.managed:
+    - source: salt://samba/smb.conf
+    - user: root
+    - group: root
+    - mode: 644
+
+samba-service:
+  service.running:
+    - name: smbd.service
+    - onchanges:
+      - file: /etc/samba/smb.conf
 
 #ufw setup
 
@@ -143,16 +160,4 @@ ufw-service:
       - file: /etc/ufw/ufw.conf
       - file: /etc/ufw/user6.rules
       - file: /etc/ufw/user.rules
-
-
-
-
-
-
-
-
-
-
-
-
 

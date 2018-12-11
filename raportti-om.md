@@ -533,7 +533,7 @@ Kaikki näyttäisi toimivan odotusten mukaisesti.
 
 ### Automatisointi
 
-Lisätty seuraava koodi tiedostoon hsrv.sls:
+Lisätty seuraava koodi tiedostoon hsrv.sls, jotta paketit asentuisivat:
 
 ```YAML
 samba:
@@ -544,6 +544,56 @@ samba:
       - python-glade2
       - system-config-samba
 ```
+
+Koska asetukset ovat jo sopivat manuaalisen tilanteen jälkeen, niin kopioin tiedoston `smb.conf` saltin omaan polkuun `salt://samba/smb.conf`.
+
+Lisäsin seuraavan koodin automatisointiin, jotta asetukset kopioituvat kohteelle jatkossa oikein.
+
+```Shell
+/etc/samba/smb.conf:
+  file.managed:
+    - source: salt://samba/smb.conf
+    - user: root
+    - group: root
+    - mode: 644
+```
+
+Loin ShellScriptin nimeltä `smbpub.sh`, joka huolehtii kansioista ja oikeuksista, vaikka tämän voisi tietysti luoda suoraan saltilla, mutta hallitsen tämän tyylin paremmin.
+
+```Shell
+#!/bin/bash
+
+sudo mkdir -p /samba/public
+sudo chown -R nobody:nogroup /samba/public
+sudo chmod -R 0775 /samba/public
+```
+
+Luotu hsrv.sls-tiedostoon seuraava kohta, jolla ajetaan tuo luotu ShellScript:
+
+```
+public-dir:
+  cmd.script:
+    - name: smbpub.sh
+    - source: salt://samba/smbpub.sh
+    - unless: ls /samba/public/
+```
+**Selite**
+
+Logiikka koodissa toimii siten, että `cmd.script` ajaa tuon luodun skriptin `smbpub.sh`, paitsi jos polku samba/public on jo olemassa.
+
+
+Muutokset tulevat voimaan vasta uudelleenkäynnistyksen jälkeen, joten tehty tähän seuraava koodi:
+
+```YAML
+samba-service:
+  service.running:
+    - name: smbd.service
+    - onchanges:
+      - file: /etc/samba/smb.conf
+```
+**Selite:**
+Mikäli muutoksia tulee tiedostoon plussa `/etc/samba/smb.conf`, niin käynnistetään uudestaan samban palvelu `smbd.service`.
+
 
 
 ---
