@@ -85,7 +85,7 @@ mariadb:
       - mariadb-server
       - mariadb-client
 
-#Samba
+#Samba setup
 
 samba:
   pkg.installed:
