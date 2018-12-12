@@ -1,6 +1,6 @@
 Copyright 2018 Juha-Pekka Pulkkinen https://github.com/a1704565 GNU General Public License v3.0
 
-# Raportti -  Oma Moduuli
+# Raportti - Oma Moduuli
 
 Aloitettu 10.12.2018 klo: 2:32
 
@@ -14,9 +14,9 @@ _Koneen tiedot:_
 * RAM: 2GB
 * GPU: AMD Radeon X1200
 * Käyttöjärjestelmä: Xubuntu 18.04.01 LTS
-* Lyvytila: 2x 250GB HDD 
+* Levytila: 2x 250GB HDD 
 
-Koneelle on annettu nimi `xuse` ja se tulee olemaan jatkossa salt-master muille myöhemmin määritetyille koneile, joten työstettävä moduuli ajetaan sille lopuksi komennolla `salt-call --local state.highstate`.
+Koneelle on annettu nimi `xuse` ja se tulee olemaan jatkossa salt-master muille myöhemmin määritetyille koneille, joten työstettävä moduuli ajetaan sille lopuksi komennolla `salt-call --local state.highstate`.
 
 Ennen lopullista vaihetta, käytän tilanteen helpottamiseksi toista konetta masterina ja xuse on määritetty tässä vaiheessa minioniksi.
 
@@ -27,7 +27,7 @@ _Väliaikaisen masterin tiedot:_
 * RAM: 16GB, 1600MHz DDR3
 * GPU: Intel integrated graphics / nVidia GeForce 820
 * Käyttöjärjestelmä: Xubuntu 18.04 LTS
-* Lyvytila: noin 120GB (SSD), toinen vastaava osio varattu Windows 10 käyttöön
+* Levytila: noin 120GB (SSD), toinen vastaava osio varattu Windows 10 käyttöön
 
 **Huom!** Manuaaliset komennot ajettu ssh-yhteyden yli kohdekoneella.
 
@@ -62,7 +62,7 @@ Lista saattaa muuttua vielä työn edetessä.
 
 # Toteutus
 
-Luotu ShellScript, joka hoitaa perustarpeet kuntoon, eli asentaa salt-masterin ja gitin, sekä kloonaa tarvittavat tiedostot polkuun `/srv/salt/` ja määrittää gitille muutaman globaalin asetuksen.
+Luotu ShellScript `hsrv.sh`, joka hoitaa perustarpeet kuntoon, eli asentaa salt-masterin ja gitin, sekä kloonaa tarvittavat tiedostot polkuun `/srv/salt/` ja määrittää gitille muutaman globaalin asetuksen. Uusin versio skriptistä löytyy [täältä](https://github.com/a1704565/salt/blob/master/start/hsrv.sh).
 
 ```ShellScript
 #!/bin/bash
@@ -85,7 +85,7 @@ echo "Everything complete! Salt-master and git have been isntalled, clone from g
 
 **Selite**
 
-* Ilmoitetaan echolla scriptin aloitus
+* Ilmoitetaan echolla skriptin aloitus
 * Näppäimistön kieli muuttuu suomeksi (ei välttämättä pakollinen, mutta ihan varalta)
 * Aikavyöhyke asetetaan Europe/Helsinki (varalta)
 * Päivitetään pakettilista
@@ -94,14 +94,14 @@ echo "Everything complete! Salt-master and git have been isntalled, clone from g
 * git globaali asetus user.email
 * git globaali asetus user.name
 * git globaali asetus, jolla määritetty odotusajaksi tunti ennen seuraavaa salasanakyselyä
-* echo ilmoittaa että kaikki on toimenpiteet on suoritettu
+* echo ilmoittaa, että kaikki on toimenpiteet on suoritettu
 
 
 Tarkoitus on, että kyseisen skriptin voi hakea koneelle githubista komennolla `wget https://raw.githubusercontent.com/a1704565/salt/master/start/hsrv.sh` ja se voidaan ajaa käyttämällä komentoa `bash`, jolloin edeltävät toiminnot ajetaan.
 
 ## hsrv.sls
 
-Salt-tilan kasaaminen aloitettu vanhojen tunneilla ja läksyinä tehtyjen moduulien pohjalta, joita olen muokannut paremmin tähän tarkoitukseen sopivaksi. Hsrv.sls nimi tulee käsitteestä home server. Uusin versio saatavilla tästä [linkistä](https://github.com/a1704565/salt/blob/master/hsrv.sls).
+Salt-tilan kasaaminen aloitettu vanhojen tunneilla ja läksyinä tehtyjen moduulien pohjalta, joita olen muokannut paremmin tähän tarkoitukseen sopivaksi. Hsrv.sls nimi tulee käsitteestä home server. Uusin versio löytyy tästä [linkistä](https://github.com/a1704565/salt/blob/master/hsrv.sls).
 
 **Keskeneräinen salt-tila**
 
@@ -202,7 +202,7 @@ mariadb:
   * mikäli muutosta tapahtuu, käynnistetän palvelu apache2 uudestaan
 3. #PHP setup
   * Asennetaan php, php-pear, php7.2-dev, php7.2-zip, php7.2-curl, php7.2-gd, php7.2-mysql, php7.2-xml & libapache2-mod-php7.2
-  * haetaan php7.2.conf ja php7.2load sisältö polkuun `/etc/apache2/mods-available/`saltin polusta `salt://php/php7.2.conf`
+  * haetaan php7.2.conf ja php7.2load sisältö polkuun `/etc/apache2/mods-available/` saltin polusta `salt://php/php7.2.conf`
   * varmistetaan että jos muutoksia on, niin apache2 käynnistyy uudestaan (sama kaava kuin vaiheessa 2.)
   * haetaan testi.php polkuun `/var/www/html/test.php` saltin polusta `salt://www/hsrv/test.php`
 4. #Mariadb default setup
@@ -355,10 +355,10 @@ ufw-service:
 
 * Kaikki 5kpl tiedostoja on kopioitu kohteen polkuun `/etc/ufw/` saltin polusta `salt://ufw/`.
 * Kaikille tiedostoille on määritetty omistajaksi ja ryhmäksi root
-* Yhdelle teidostolle on määritetty oikeudet 644;
+* Yhdelle tiedostolle on määritetty oikeudet 644;
   * omistajalla = luku- ja kirjoitusoikeus
   * ryhmällä = lukuoikeus
-  * julkisesti = lukuoikeis
+  * julkisesti = lukuoikeus
 * Muilla tiedostoilla on oikeudet 640;
   * omistajalla = luku- ja kirjoitusoikeus
   * ryhmällä = lukuoikeus
@@ -398,7 +398,7 @@ Total states run:     21
 Total run time:    3.065 s
 ```
 
-Tarkastettu tilanne ssh-yhteyden yli kohdekonella:
+Tarkastettu tilanne ssh-yhteyden yli kohde konella:
 
 ```Shell
 sudo ufw status verbose
@@ -425,7 +425,7 @@ To                         Action      From
 Kaikki näyttäisi toimivan tähän asti hyvin.
 
 **Lähde:**
-[]()
+[How To Setup a Firewall with UFW on an Ubuntu and Debian Cloud Server](https://www.digitalocean.com/community/tutorials/how-to-setup-a-firewall-with-ufw-on-an-ubuntu-and-debian-cloud-server)
 
 
 ## Samba
@@ -435,11 +435,11 @@ Koska samba on asetettu, niin päätin luoda sille alustavat asetukset kuntoon t
 
 ### Manuaalinen tapa
 
-Asennettu enstin tarvittavat paketit käsin komennolla `sudo apt-get install samba samba-common python-glade2 system-config-samba`.
+Asennettu ensin tarvittavat paketit käsin komennolla `sudo apt-get install samba samba-common python-glade2 system-config-samba`.
 
 Jatkoin kopioimalla talteen kohdekoneella originaalit samba asetukset komennolla `sudo cp -pf /etc/samba/smb.conf /etc/samba/smb.conf.bak`. Tämän jälkeen on turvallisempaa muokata tiedostoa, koska siitä on varmuuskopio.
 
-Muokkasin tiedostoon `smb.conf` tähän tapaukseen sopivat astukset:
+Muokkasin tiedostoon `smb.conf` tähän tapaukseen sopivat asetukset:
 
 ```Shell
 [global]
@@ -495,7 +495,7 @@ sudo systemctl restart smbd.service
 
 ### Testaus
 
-Väliaikaisella masterilla avattu thunar ja avattu kohde `smb://xuse.local/public/` Lisätty satunnainen valokuva `public` kansioon nimeltä `DSC_1792.JPG`.
+Väliaikaisella masterilla avattu Thunar ja avattu kohde `smb://xuse.local/public/` Lisätty satunnainen valokuva `public` kansioon nimeltä `DSC_1792.JPG`.
 
 SSH-yhteyden kautta kohdekoneella tarkasteltu kansiota:
 
@@ -518,7 +518,7 @@ Windows näkee jaon.
 
 Windows näkee myös jaetun tiedoston ja sen voi avata.
 
-Testattu seuraavaksi android puhelimella samaa:
+Testattu seuraavaksi Android-puhelimella samaa:
 
 ![Samba 03](/img/smb/smb03.jpg "Android näkee jaon")
 
@@ -526,7 +526,7 @@ Android (FX File Explorer) näkee jaon.
 
 ![Samba 04](/img/smb/smb04.jpg "Jaettu tiedosto näkyy ja sne voi avata")
 
-Android (FX File Explorer) näkee tiedoston ja sn voi myös avata.
+Android (FX File Explorer) näkee tiedoston ja sen voi myös avata.
 
 
 Kaikki näyttäisi toimivan odotusten mukaisesti.
@@ -594,6 +594,16 @@ samba-service:
 **Selite:**
 Mikäli muutoksia tulee tiedostoon plussa `/etc/samba/smb.conf`, niin käynnistetään uudestaan samban palvelu `smbd.service`.
 
+### Testaus
+
+Ajettu higstatea monia kertoja, kun ensin on poisteltu kansioita ja muutettu asetuksia, ja kaikki toimii kuten pitääkin.
+
+Lopullinen testi:
+
+* Asennettu xubuntu 18.04.1 LTS uudestaan kohde koneelle
+* ajettu 
+
+# Lopputulos
 
 
 ---
@@ -601,4 +611,5 @@ Mikäli muutoksia tulee tiedostoon plussa `/etc/samba/smb.conf`, niin käynniste
 # Lähdeluettelo
 
 - https://docs.saltstack.com/en/latest/ref/states/all/salt.states.file.html
+- https://www.digitalocean.com/community/tutorials/how-to-setup-a-firewall-with-ufw-on-an-ubuntu-and-debian-cloud-server
 - https://websiteforstudents.com/samba-setup-on-ubuntu-16-04-17-10-18-04-with-windows-systems/
