@@ -854,7 +854,7 @@ ufw-service:
 
 # Pohdintoja lopputuloksen jälkeen
 
-Periaatteessa olisi mahdollista asettaa nykyinen master, eli koone nimeltä `xuse` myös omaksi minionikseen, jolloin yllapito automatisoituisi edeltävien asetusten kannalta. En kuitenkaan ole vielä päättänyt, mitä muita ominaisuuksia lisään koneeseen tämän projektin päätyttyä, joten tilanne jää tämän osalta auki toistaiseksi.
+Periaatteessa olisi mahdollista asettaa nykyinen master, eli kone nimeltä `xuse` myös omaksi minionikseen, jolloin ylläpito automatisoituisi edeltävien asetusten kannalta. En kuitenkaan ole vielä päättänyt, mitä muita ominaisuuksia lisään koneeseen tämän projektin päätyttyä, joten tilanne jää tämän osalta auki toistaiseksi.
 
 Tarkoitus kuitenkin olisi, että kyseinen kone toimisi Salt-masterina jatkossa muille koneilleni ja ehkäpä jopa muiden sukulaisten ja tuttavien koneille, koska siitä olisi vain ylläpidollista hyötyä.
 
