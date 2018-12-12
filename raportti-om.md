@@ -659,7 +659,7 @@ To                         Action      From
 ```
 
 * Tarkastettu, että index.html ja hello.php näkyvät oikein
-* Testattu samban toimivuus, lisätty satunnainen tiedosto jaettuun kansioon paikallisella tietokoneella, jossa käytössä windows 10 Pro käyttöjärjestelmä
+* Testattu samban toimivuus, lisätty satunnainen tiedosto jaettuun kansioon paikallisella tietokoneella, jossa käytössä Windows 10 Pro käyttöjärjestelmä
 * Tarkastettu miten tiedosto näkyy palvelimella (xuse) ajamalla sillä komento `ls -lah /samba/public/`
 
 ```Shell
@@ -678,7 +678,7 @@ Kaikki näyttäisi toimivan odotusten mukaisesti. Testaus voidaan päättää t�
 # Lopputulos
 
 
-# Pohdintoja lupputuloksen jälkeen
+# Pohdintoja lopputuloksen jälkeen
 
 ---
 
