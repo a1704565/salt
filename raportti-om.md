@@ -601,10 +601,84 @@ Ajettu higstatea monia kertoja, kun ensin on poisteltu kansioita ja muutettu ase
 Lopullinen testi:
 
 * Asennettu xubuntu 18.04.1 LTS uudestaan kohde koneelle
-* ajettu 
+* Ladattu ShellScript githubista komennolla `wget https://raw.githubusercontent.com/a1704565/salt/master/start/hsrv.sh`
+* Ajettu skripti komennolla `bash hsrv.sh`
+* Todettu, että skripti suoritettiin loppuun onnistuneesti
+* Annettu komento `salt-call --local state.highstate`
+
+Tulos:
+
+```Shell
+Summary for local
+-------------
+Succeeded: 25 (changed=20)
+Failed:     0
+-------------
+Total states run:     25
+Total run time:  436.418 s
+```
+
+* Annettu uudestaa komento `salt-call --local state.highstate`, jotta nähdään tuleeko tarpeettomasti muutoksia virheen ansiosta
+
+Tulos:
+
+```Shell
+Summary for local
+-------------
+Succeeded: 25
+Failed:     0
+-------------
+Total states run:     25
+Total run time:    1.595 s
+```
+
+* Tarkastettu palomuurin ominaisuudet ajamalla komento `sudo ufw status verbose`
+
+Tulos:
+
+```Shell
+Status: active
+Logging: on (low)
+Default: deny (incoming), allow (outgoing), disabled (routed)
+New profiles: skip
+
+To                         Action      From
+--                         ------      ----
+80,443/tcp (Apache Full)   ALLOW IN    Anywhere
+22/tcp (OpenSSH)           ALLOW IN    Anywhere
+137,138/udp (Samba)        ALLOW IN    Anywhere
+139,445/tcp (Samba)        ALLOW IN    Anywhere
+4505/tcp                   ALLOW IN    Anywhere
+4506/tcp                   ALLOW IN    Anywhere
+80,443/tcp (Apache Full (v6)) ALLOW IN    Anywhere (v6)
+22/tcp (OpenSSH (v6))      ALLOW IN    Anywhere (v6)
+137,138/udp (Samba (v6))   ALLOW IN    Anywhere (v6)
+139,445/tcp (Samba (v6))   ALLOW IN    Anywhere (v6)
+4505/tcp (v6)              ALLOW IN    Anywhere (v6)
+4506/tcp (v6)              ALLOW IN    Anywhere (v6)
+```
+
+* Tarkastettu, että index.html ja hello.php näkyvät oikein
+* Testattu samban toimivuus, lisätty satunnainen tiedosto jaettuun kansioon paikallisella tietokoneella, jossa käytössä windows 10 Pro käyttöjärjestelmä
+* Tarkastettu miten tiedosto näkyy palvelimella (xuse) ajamalla sillä komento `ls -lah /samba/public/`
+
+```Shell
+total 8,0M
+drwxrwxr-x 2 nobody nogroup 4,0K joulu 11 06:43 .
+drwxr-xr-x 3 root   root    4,0K joulu 11 06:35 ..
+-rwxrw-rw- 1 nobody nogroup 8,0M elo   24 00:02 DSC_2329.JPG
+```
+
+* Tarkastettu htop toimivuus ajamalla komento `htop` tietokoneella xuse
+* Tarkastettu tree toimivuus ajamalla komento `tree` tietokoneella xuse
+
+Kaikki näyttäisi toimivan odotusten mukaisesti. Testaus voidaan päättää tähän.
+
 
 # Lopputulos
 
+
+# Pohdintoja lupputuloksen jälkeen
 
 ---
 
