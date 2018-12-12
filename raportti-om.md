@@ -62,9 +62,9 @@ Lista saattaa muuttua vielä työn edetessä.
 
 # Toteutus
 
-Luotu ShellScript `hsrv.sh`, joka hoitaa perustarpeet kuntoon, eli asentaa salt-masterin ja gitin, sekä kloonaa tarvittavat tiedostot polkuun `/srv/salt/` ja määrittää gitille muutaman globaalin asetuksen. Uusin versio skriptistä löytyy [täältä](https://github.com/a1704565/salt/blob/master/start/hsrv.sh).
+Luotu Shell-skripti `hsrv.sh`, joka hoitaa perustarpeet kuntoon, eli asentaa salt-masterin ja gitin, sekä kloonaa tarvittavat tiedostot polkuun `/srv/salt/` ja määrittää gitille muutaman globaalin asetuksen. Uusin versio skriptistä löytyy [täältä](https://github.com/a1704565/salt/blob/master/start/hsrv.sh).
 
-```ShellScript
+```Shell
 #!/bin/bash
 
 echo "Running the start script! Please wait..."
@@ -558,7 +558,7 @@ Lisäsin seuraavan koodin automatisointiin, jotta asetukset kopioituvat kohteell
     - mode: 644
 ```
 
-Loin ShellScriptin nimeltä `smbpub.sh`, joka huolehtii kansioista ja oikeuksista, vaikka tämän voisi tietysti luoda suoraan saltilla, mutta hallitsen tämän tyylin paremmin.
+Loin Shell-skriptin nimeltä `smbpub.sh`, joka huolehtii kansioista ja oikeuksista, vaikka tämän voisi tietysti luoda suoraan saltilla, mutta hallitsen tämän tyylin paremmin.
 
 ```Shell
 #!/bin/bash
@@ -568,7 +568,7 @@ sudo chown -R nobody:nogroup /samba/public
 sudo chmod -R 0775 /samba/public
 ```
 
-Luotu hsrv.sls-tiedostoon seuraava kohta, jolla ajetaan tuo luotu ShellScript:
+Luotu hsrv.sls-tiedostoon seuraava kohta, jolla ajetaan tuo luotu Shell-skripti:
 
 ```
 public-dir:
@@ -601,7 +601,7 @@ Ajettu higstatea monia kertoja, kun ensin on poisteltu kansioita ja muutettu ase
 Lopullinen testi:
 
 * Asennettu xubuntu 18.04.1 LTS uudestaan kohde koneelle
-* Ladattu ShellScript githubista komennolla `wget https://raw.githubusercontent.com/a1704565/salt/master/start/hsrv.sh`
+* Ladattu Shell-skripti githubista komennolla `wget https://raw.githubusercontent.com/a1704565/salt/master/start/hsrv.sh`
 * Ajettu skripti komennolla `bash hsrv.sh`
 * Todettu, että skripti suoritettiin loppuun onnistuneesti
 * Annettu komento `salt-call --local state.highstate`
@@ -677,6 +677,20 @@ Kaikki näyttäisi toimivan odotusten mukaisesti. Testaus voidaan päättää t�
 
 # Lopputulos
 
+Tuotettu koodi, sekä käytetyt asetustiedostot:
+
+* [Shell-skripti - hsrv.sh](https://github.com/a1704565/salt/blob/master/start/hsrv.sh)
+* [Salt-tila - hsrv.sls](https://github.com/a1704565/salt/blob/master/hsrv.sls)
+* [HTML- ja PHP-sisältö](https://github.com/a1704565/salt/tree/master/www/hsrv)
+* [PHP-asetukset](https://github.com/a1704565/salt/tree/master/php)
+* [Samba asetukset ja Shell-skripti](https://github.com/a1704565/salt/tree/master/samba)
+* [Palomuurin asetukset](https://github.com/a1704565/salt/tree/master/ufw)
+
+Salt-tilan lopullinen versio:
+
+```YAML
+
+```
 
 # Pohdintoja lopputuloksen jälkeen
 
