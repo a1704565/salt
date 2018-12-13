@@ -46,7 +46,7 @@ Listaus asioista, jotka tahdon toimimaan alustavasti kotipalvelimella:
   - Apache2
   - PHP 7.2
     - yleiset moduulit
-  - MariaBD (client ja server)
+  - MariaDB (client ja server)
 - OpenSSH-server
 - samba
   - samba-common
